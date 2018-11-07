@@ -7,7 +7,7 @@
     "test": "mocha ./build/tests --recursive",
     "build": "babel src --watch -d build",
     "serve": "nodemon build/server.js",
-    "cover": "istanbul cover _mocha",
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha ./build/tests",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
