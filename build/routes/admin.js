@@ -12,12 +12,10 @@ var router = _express2.default.Router();
  * route to sign-in the user to its account
  * @method POST
  */
-router.post('/signIn', function (request, response, next) {
+router.post('/signIn', function (request, response) {
   response.status(200).json({
     message: 'post request to /admin/signIn'
   });
-
-  next();
 });
 
 module.exports = router;

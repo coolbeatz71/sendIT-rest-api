@@ -10,8 +10,6 @@ router.get('/', (request, response, next) => {
   response.status(200).json({
     message: 'get request to /parcels',
   });
-
-  next();
 });
 
 /**
@@ -22,8 +20,6 @@ router.post('/', (request, response, next) => {
   response.status(200).json({
     message: 'post request to /parcels',
   });
-
-  next();
 });
 
 /**
@@ -36,8 +32,6 @@ router.get('/:parcelId', (request, response, next) => {
     message: 'get request to /parcels for an individual parcel order',
     parcelId,
   });
-
-  next();
 });
 
 module.exports = router;
