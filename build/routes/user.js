@@ -26,19 +26,26 @@ router.post('/signIn', function (request, response) {
       password = _request$body.password;
 
 
-  var user = new _user2.default();
-  var userInfo = user.getUser(email, password);
-
-  if (userInfo) {
-    response.status(200).json({
-      error: false,
-      data: userInfo
+  if (!email || !password) {
+    response.status(401).json({
+      error: true,
+      emptyParams: true
     });
   } else {
-    response.status(404).json({
-      error: true,
-      message: 'No user found with these credentials'
-    });
+    var user = new _user2.default();
+    var userInfo = user.getUser(email, password);
+
+    if (userInfo) {
+      response.status(200).json({
+        error: false,
+        data: userInfo
+      });
+    } else {
+      response.status(401).json({
+        error: true,
+        message: 'No user found with these credentials'
+      });
+    }
   }
 });
 
@@ -54,19 +61,26 @@ router.post('/signUp', function (request, response) {
       password = _request$body2.password;
 
 
-  var user = new _user2.default();
-  var signUp = user.createUser(firstName, lastName, email, password);
-
-  if (!signUp) {
+  if (!firstName || !lastName || !email || !password) {
     response.status(401).json({
       error: true,
-      userExist: true
+      emptyParams: true
     });
   } else {
-    response.status(201).json({
-      error: false,
-      data: signUp
-    });
+    var user = new _user2.default();
+    var signUp = user.createUser(firstName, lastName, email, password);
+
+    if (!signUp) {
+      response.status(401).json({
+        error: true,
+        userExist: true
+      });
+    } else {
+      response.status(201).json({
+        error: false,
+        data: signUp
+      });
+    }
   }
 });
 
