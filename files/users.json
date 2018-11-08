@@ -1,0 +1,37 @@
+[
+    {
+        "id": "001",
+        "firstName": "Mutombo",
+        "lastName": "Jean-Vincent",
+        "email": "sigmacool@gmail.com",
+        "password": "12345678"
+    },
+    {
+        "id": "002",
+        "firstName": "Kalenga",
+        "lastName": "Glody",
+        "email": "kalenga@gmail.com",
+        "password": "12345678"
+    },
+    {
+        "id": "003",
+        "firstName": "Ishimye",
+        "lastName": "Joel",
+        "email": "Ishimye@gmail.com",
+        "password": "12345678"
+    },
+    {
+        "id": "909",
+        "firstName": "mutombo",
+        "lastName": "JV",
+        "email": "sigmacool@gmail.co",
+        "password": "12345678"
+    },
+    {
+        "id": "850",
+        "firstName": "Yves",
+        "lastName": "Umutesi",
+        "email": "umutesi@gmail.com",
+        "password": "12345678"
+    }
+]
