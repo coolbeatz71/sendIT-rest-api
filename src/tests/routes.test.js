@@ -20,7 +20,7 @@ describe('/GET parcels', () => {
   });
 });
 
-// signUp the user
+// signUp the user when no data are sent
 describe('/POST signUp user', () => {
   const signUpData = {
     firstName: '',
@@ -33,7 +33,7 @@ describe('/POST signUp user', () => {
       .post(`${apiVersion}/user/signUp`)
       .send(signUpData)
       .end((err, res) => {
-        res.should.have.status(201);
+        res.should.have.status(401);
         done();
       });
   });

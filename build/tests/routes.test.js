@@ -30,7 +30,7 @@ describe('/GET parcels', function () {
   });
 });
 
-// signUp the user
+// signUp the user when no data are sent
 describe('/POST signUp user', function () {
   var signUpData = {
     firstName: '',
@@ -40,7 +40,7 @@ describe('/POST signUp user', function () {
   };
   it('it should POST user data (signUp)', function (done) {
     _chai2.default.request(_app2.default).post(apiVersion + '/user/signUp').send(signUpData).end(function (err, res) {
-      res.should.have.status(201);
+      res.should.have.status(401);
       done();
     });
   });
