@@ -29,10 +29,10 @@ var App = function () {
      * @return object
      */
     value: function readDataFile(path) {
-      this.rawData = _fs2.default.readFileSync(path);
-      this.users = JSON.parse(this.rawData);
+      this.rawData = _fs2.default.readFileSync(path, 'utf-8');
+      this.data = JSON.parse(this.rawData);
 
-      return this.users;
+      return this.data;
     }
 
     /**

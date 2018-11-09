@@ -8,10 +8,10 @@ export default class App {
    * @return object
    */
   readDataFile(path) {
-    this.rawData = fs.readFileSync(path);
-    this.users = JSON.parse(this.rawData);
+    this.rawData = fs.readFileSync(path, 'utf-8');
+    this.data = JSON.parse(this.rawData);
 
-    return this.users;
+    return this.data;
   }
 
   /**
