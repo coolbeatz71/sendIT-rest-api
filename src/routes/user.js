@@ -2,6 +2,8 @@ import express from 'express';
 
 // importing models
 import User from '../models/user';
+import Parcel from '../models/parcel';
+import checkAuth from '../authMiddleware';
 
 const router = express.Router();
 
@@ -70,6 +72,22 @@ router.post('/signUp', (request, response) => {
       });
     }
   }
+});
+
+/**
+ * route to fetch all parcels delivery orders by a specific user
+ * @method GET
+ */
+router.get('/:userId/parcels', checkAuth, (request, response) => {
+  const { userId } = request.params;
+
+  const parcel = new Parcel();
+  const getParcel = parcel.getAllParcelByUser(userId);
+
+  response.status(200).json({
+    error: false,
+    data: getParcel,
+  });
 });
 
 module.exports = router;
