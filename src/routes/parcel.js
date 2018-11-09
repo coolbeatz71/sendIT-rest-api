@@ -11,13 +11,9 @@ const router = express.Router();
  * route to fetch all parcels delivery orders
  * @method GET
  */
-router.get('/', checkAuth, (request, response) => {
-  const parcel = new Parcel();
-  const getParcel = parcel.getAllParcel();
-
+router.get('/', (request, response) => {
   response.status(200).json({
-    error: false,
-    data: getParcel,
+    message: 'get request to /parcels',
   });
 });
 
@@ -44,9 +40,7 @@ router.post('/', checkAuth, (request, response) => {
     });
   } else {
     const parcel = new Parcel();
-    const createParcel = parcel.createParcel(
-      userId, parcelName, description, pickupLocation, destination, weight,
-      );
+    const createParcel = parcel.createParcel(userId, parcelName, description, pickupLocation, destination, weight);
 
     response.status(200).json({
       error: false,

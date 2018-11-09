@@ -26,9 +26,9 @@ _chai2.default.use(_chaiHttp2.default);
 
 // get all parcel delivery orders
 describe('## /GET parcels', function () {
-  it('should GET all the parcels', function (done) {
+  it('it should GET all the parcels', function (done) {
     _chai2.default.request(_app2.default).get(apiVersion + '/parcels').end(function (err, res) {
-      res.should.have.status(401);
+      res.should.have.status(200);
       done();
     });
   });
@@ -36,7 +36,7 @@ describe('## /GET parcels', function () {
 
 // test create parcel routes
 describe('## /POST create new parcel delivery order', function () {
-  it('should POST a new parcel', function (done) {
+  it('it should POST a new parcel', function (done) {
     _chai2.default.request(_app2.default).post(apiVersion + '/parcels').send({}).end(function (err, res) {
       res.should.have.status(401);
       done();
@@ -52,17 +52,8 @@ describe('/POST signUp user', function () {
     email: '',
     passwrord: ''
   };
-  it('should POST user data (signUp)', function (done) {
+  it('it should POST user data (signUp)', function (done) {
     _chai2.default.request(_app2.default).post(apiVersion + '/user/signUp').send(signUpData).end(function (err, res) {
-      res.should.have.status(401);
-      done();
-    });
-  });
-});
-
-describe('/GET /:userId/parcels', function () {
-  it('should Get parcel delivery order by a specific user', function (done) {
-    _chai2.default.request(_app2.default).get(apiVersion + '/user/:userId/parcels').end(function (err, res) {
       res.should.have.status(401);
       done();
     });
@@ -71,7 +62,7 @@ describe('/GET /:userId/parcels', function () {
 
 // post admin data
 describe('/POST signIn admin', function () {
-  it('should POST admin data (signIn)', function (done) {
+  it('it should POST admin data (signIn)', function (done) {
     _chai2.default.request(_app2.default).post(apiVersion + '/admin/signIn').end(function (err, res) {
       res.should.have.status(200);
       done();

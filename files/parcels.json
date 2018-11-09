@@ -1,72 +1,61 @@
 [
     {
         "orderId": "001",
-        "sender": {
+        "sender" : {
             "id": "001"
         },
         "parcelName": "Lg TV Screen",
         "Description": "Lg TV Screen 1024x720, HD bought from Dubai",
-        "weight": "5Kg",
+        "weight" : "5Kg",
         "price": "Rwf 2500",
-        "status": "In transit",
-        "pickupLocation": "Rwanda",
+        "status" : "In transit",
+        "pickupLocation": "Rwanda", 
         "presentLocation": "Rwanda",
         "destination": "Uganda"
     },
+
     {
         "orderId": "002",
-        "sender": {
+        "sender" : {
             "id": "001"
         },
         "parcelName": "Nike shoes",
         "Description": "Nike shoes, blue color and bought from China",
-        "weight": "10Kg",
+        "weight" : "10Kg",
         "price": "Rwf 5000",
-        "status": "In transit",
-        "pickupLocation": "Nigeria",
+        "status" : "In transit",
+        "pickupLocation": "Nigeria", 
         "presentLocation": "Rwanda",
         "destination": "Uganda"
     },
+
     {
         "orderId": "003",
-        "sender": {
+        "sender" : {
             "id": "002"
         },
         "parcelName": "Clothes",
         "Description": "Pant and Shirt for girls bought from DR Congo",
-        "weight": "2Kg",
+        "weight" : "2Kg",
         "price": "Rwf 1000",
-        "status": "delivered",
-        "pickupLocation": "Uganda",
+        "status" : "delivered",
+        "pickupLocation": "Uganda", 
         "presentLocation": "Rwanda",
         "destination": "Kenya"
     },
+
     {
         "orderId": "004",
-        "sender": {
+        "sender" : {
             "id": "003"
         },
         "parcelName": "Dell Computers",
         "Description": "Dell Inspiron 2531, white color with 500GB HDD",
-        "weight": "5Kg",
+        "weight" : "5Kg",
         "price": "Rwf 2500",
-        "status": "delivered",
-        "pickupLocation": "Kenya",
+        "status" : "delivered",
+        "pickupLocation": "Kenya", 
         "presentLocation": "DR Congo",
         "destination": "Nigera"
-    },
-    {
-        "orderId": "512",
-        "sender": {
-            "id": "001"
-        },
-        "parcelName": "Techno smartphones",
-        "description": "Techno smarthone mark 'Techno Sparks k7'",
-        "weight": "20",
-        "price": 10000,
-        "status": "in transit",
-        "pickupLocation": "Rwanda",
-        "presentLocation": "",
-        "destination": "Kenya"
     }
 ]

@@ -53,7 +53,7 @@ export default class Parcel {
     // push new order
     parcelData.push(parcelInfo);
     this.app.writeDataFile(parcelFilePath, parcelData);
-    return parcelInfo;
+    return parcelData;
   }
 
   /**
@@ -73,12 +73,8 @@ export default class Parcel {
   getAllParcelByUser(id) {
     const parcelData = this.app.readDataFile(parcelFilePath);
 
-    const parcel = parcelData.filter(el => el.sender.id === id);
-
-    if (parcel.length < 1) {
-      return null;
-    }
-    return parcel;
+    const parcels = parcelData.filter(el => el.orderId === id);
+    return parcels;
   }
 
   /**
@@ -88,7 +84,7 @@ export default class Parcel {
    */
   getParcelPrice(weight) {
     const unitPrice = 500;
-    this.price = weight * unitPrice;
+    this.price = parseFloat(weight) * unitPrice;
     return Number.parseInt(this.price, 10);
   }
 

@@ -128,7 +128,7 @@ describe('##### Parcel class', function () {
   describe('# get all for parcel delivery order for a specific user', function () {
     it('should return an array', function () {
       var allParcel = parcel.getAllParcelByUser('011');
-      assert.isNull(allParcel);
+      assert.isArray(allParcel);
     });
   });
 
@@ -137,46 +137,6 @@ describe('##### Parcel class', function () {
     it('should return a number', function () {
       var price = parcel.getParcelPrice('500');
       assert.isNumber(price);
-    });
-  });
-});
-
-// ////////////////////////////////////
-// Testing models concerning Admin  //
-// ////////////////////////////////////
-describe('##### Admin class', function () {
-  // Testing get admin
-  describe('# When email and password dont exist', function () {
-    var email = 'whatever';
-    var password = 'whatever';
-
-    it('should return undefined', function () {
-      var getAdmin = admin.getAdmin(email, password);
-      expect(getAdmin).to.be.an('undefined');
-    });
-  });
-
-  // Testing get admin id by email
-  describe('# get admin Id by email', function () {
-    var email = 'whatever';
-
-    it('should return undefined', function () {
-      var getAdmin = admin.getAdminIdByEmail(email);
-      expect(getAdmin).to.be.an('undefined');
-    });
-  });
-
-  describe('# Testing IsTokenValid method', function () {
-    it('should return boolean', function () {
-      var isTokenValid = admin.isTokenValid('whatever');
-      assert.isBoolean(isTokenValid);
-    });
-  });
-
-  describe('# Testing getAdminIdByToken method', function () {
-    it('should return some value', function () {
-      var isTokenValid = admin.getAdminIdByToken('authkey');
-      assert.isNotNull(isTokenValid);
     });
   });
 });

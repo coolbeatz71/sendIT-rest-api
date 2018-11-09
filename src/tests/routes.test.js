@@ -14,11 +14,11 @@ chai.use(chaiHttp);
 
 // get all parcel delivery orders
 describe('## /GET parcels', () => {
-  it('should GET all the parcels', (done) => {
+  it('it should GET all the parcels', (done) => {
     chai.request(app)
       .get(`${apiVersion}/parcels`)
       .end((err, res) => {
-        res.should.have.status(401);
+        res.should.have.status(200);
         done();
       });
   });
@@ -26,7 +26,7 @@ describe('## /GET parcels', () => {
 
 // test create parcel routes
 describe('## /POST create new parcel delivery order', () => {
-  it('should POST a new parcel', (done) => {
+  it('it should POST a new parcel', (done) => {
     chai.request(app)
       .post(`${apiVersion}/parcels`)
       .send({})
@@ -45,7 +45,7 @@ describe('/POST signUp user', () => {
     email: '',
     passwrord: '',
   };
-  it('should POST user data (signUp)', (done) => {
+  it('it should POST user data (signUp)', (done) => {
     chai.request(app)
       .post(`${apiVersion}/user/signUp`)
       .send(signUpData)
@@ -56,20 +56,9 @@ describe('/POST signUp user', () => {
   });
 });
 
-describe('/GET /:userId/parcels', () => {
-  it('should Get parcel delivery order by a specific user', (done) => {
-    chai.request(app)
-      .get(`${apiVersion}/user/:userId/parcels`)
-      .end((err, res) => {
-        res.should.have.status(401);
-        done();
-      });
-  });
-});
-
 // post admin data
 describe('/POST signIn admin', () => {
-  it('should POST admin data (signIn)', (done) => {
+  it('it should POST admin data (signIn)', (done) => {
     chai.request(app)
       .post(`${apiVersion}/admin/signIn`)
       .end((err, res) => {

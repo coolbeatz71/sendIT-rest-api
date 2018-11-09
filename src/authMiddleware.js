@@ -21,6 +21,7 @@ const checkAuth = (request, response, next) => {
         authKeyInvalid: true,
       });
     } else {
+      const userId = user.getUserIdByToken(authKey);
       next();
     }
   }

@@ -76,7 +76,7 @@ var Parcel = function () {
       // push new order
       parcelData.push(parcelInfo);
       this.app.writeDataFile(parcelFilePath, parcelData);
-      return parcelInfo;
+      return parcelData;
     }
 
     /**
@@ -102,14 +102,10 @@ var Parcel = function () {
     value: function getAllParcelByUser(id) {
       var parcelData = this.app.readDataFile(parcelFilePath);
 
-      var parcel = parcelData.filter(function (el) {
-        return el.sender.id === id;
+      var parcels = parcelData.filter(function (el) {
+        return el.orderId === id;
       });
-
-      if (parcel.length < 1) {
-        return null;
-      }
-      return parcel;
+      return parcels;
     }
 
     /**
@@ -122,7 +118,7 @@ var Parcel = function () {
     key: 'getParcelPrice',
     value: function getParcelPrice(weight) {
       var unitPrice = 500;
-      this.price = weight * unitPrice;
+      this.price = parseFloat(weight) * unitPrice;
       return Number.parseInt(this.price, 10);
     }
 
