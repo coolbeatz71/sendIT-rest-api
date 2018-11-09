@@ -8,6 +8,14 @@ var _user = require('../models/user');
 
 var _user2 = _interopRequireDefault(_user);
 
+var _parcel = require('../models/parcel');
+
+var _parcel2 = _interopRequireDefault(_parcel);
+
+var _authMiddleware = require('../authMiddleware');
+
+var _authMiddleware2 = _interopRequireDefault(_authMiddleware);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
@@ -82,6 +90,23 @@ router.post('/signUp', function (request, response) {
       });
     }
   }
+});
+
+/**
+ * route to fetch all parcels delivery orders by a specific user
+ * @method GET
+ */
+router.get('/:userId/parcels', _authMiddleware2.default, function (request, response) {
+  var userId = request.params.userId;
+
+
+  var parcel = new _parcel2.default();
+  var getParcel = parcel.getAllParcelByUser(userId);
+
+  response.status(200).json({
+    error: false,
+    data: getParcel
+  });
 });
 
 module.exports = router;

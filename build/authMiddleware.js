@@ -26,7 +26,6 @@ var checkAuth = function checkAuth(request, response, next) {
         authKeyInvalid: true
       });
     } else {
-      var userId = user.getUserIdByToken(authKey);
       next();
     }
   }

@@ -27,9 +27,13 @@ var router = _express2.default.Router();
 
 
 // importing models
-router.get('/', function (request, response) {
+router.get('/', _authMiddleware2.default, function (request, response) {
+  var parcel = new _parcel2.default();
+  var getParcel = parcel.getAllParcel();
+
   response.status(200).json({
-    message: 'get request to /parcels'
+    error: false,
+    data: getParcel
   });
 });
 
