@@ -109,6 +109,7 @@ var User = function () {
 
     /**
      * get userId by his email
+     *
      * @param  string email
      * @return string
      */
@@ -151,6 +152,50 @@ var User = function () {
     value: function getUserId() {
       return this.userId;
     }
+
+    /**
+     * check whether the token is valid or not
+     *
+     * @param  string  authKey
+     * @return Boolean
+     */
+
+  }, {
+    key: 'isTokenValid',
+    value: function isTokenValid(authKey) {
+      var userData = this.app.readDataFile(userFilePath);
+      var user = userData.find(function (item) {
+        return item.token === authKey;
+      });
+
+      return !!user;
+    }
+
+    /**
+     * retrive the user Id using his authKey
+     *
+     * @param  string authKey
+     * @return string
+     */
+
+  }, {
+    key: 'getUserIdByToken',
+    value: function getUserIdByToken(authKey) {
+      var userData = this.app.readDataFile(userFilePath);
+      var user = userData.find(function (item) {
+        return item.token === authKey;
+      });
+
+      return user ? user.id : false;
+    }
+
+    /**
+     * return an encrypted token for the user
+     *
+     * @param  string email
+     * @return string
+     */
+
   }, {
     key: 'getEncryptedToken',
     value: function getEncryptedToken(email) {

@@ -76,6 +76,7 @@ export default class User {
 
   /**
    * get userId by his email
+   *
    * @param  string email
    * @return string
    */
@@ -108,6 +109,38 @@ export default class User {
     return this.userId;
   }
 
+  /**
+   * check whether the token is valid or not
+   *
+   * @param  string  authKey
+   * @return Boolean
+   */
+  isTokenValid(authKey) {
+    const userData = this.app.readDataFile(userFilePath);
+    const user = userData.find(item => item.token === authKey);
+
+    return !!user;
+  }
+
+  /**
+   * retrive the user Id using his authKey
+   *
+   * @param  string authKey
+   * @return string
+   */
+  getUserIdByToken(authKey) {
+    const userData = this.app.readDataFile(userFilePath);
+    const user = userData.find(item => item.token === authKey);
+
+    return user ? user.id : false;
+  }
+
+  /**
+   * return an encrypted token for the user
+   *
+   * @param  string email
+   * @return string
+   */
   getEncryptedToken(email) {
     const cipher = crypto.createCipher('aes192', email);
 
