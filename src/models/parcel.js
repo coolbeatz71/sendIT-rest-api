@@ -84,7 +84,7 @@ export default class Parcel {
    */
   getParcelPrice(weight) {
     const unitPrice = 500;
-    this.price = weight * unitPrice;
+    this.price = parseFloat(weight) * unitPrice;
     return Number.parseInt(this.price, 10);
   }
 

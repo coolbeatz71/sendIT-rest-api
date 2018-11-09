@@ -8,13 +8,30 @@ const apiVersion = '/api/v1';
 
 chai.use(chaiHttp);
 
+// ////////////////////
+// Test for parcels //
+// ////////////////////
+
 // get all parcel delivery orders
-describe('/GET parcels', () => {
+describe('## /GET parcels', () => {
   it('it should GET all the parcels', (done) => {
     chai.request(app)
       .get(`${apiVersion}/parcels`)
       .end((err, res) => {
         res.should.have.status(200);
+        done();
+      });
+  });
+});
+
+// test create parcel routes
+describe('## /POST create new parcel delivery order', () => {
+  it('it should POST a new parcel', (done) => {
+    chai.request(app)
+      .post(`${apiVersion}/parcels`)
+      .send({})
+      .end((err, res) => {
+        res.should.have.status(401);
         done();
       });
   });

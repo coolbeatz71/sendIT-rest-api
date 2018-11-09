@@ -47,7 +47,7 @@ app.use((request, response, next) => {
 });
 
 // customize error display
-app.use((error, request, response, next) => {
+app.use((error, request, response) => {
   response.status(error.status || 500);
   response.json({
     error: {
