@@ -98,9 +98,45 @@ describe('##### User class', function () {
   });
 
   describe('#### Testing getUserIdByToken method', function () {
-    it('should return boolean', function () {
+    it('should return some value', function () {
       var isTokenValid = user.getUserIdByToken('authkey');
       assert.isNotNull(isTokenValid);
+    });
+  });
+
+  describe('#### Testing getEncryptedToken method', function () {
+    it('should return a string', function () {
+      var encryptedToken = user.getEncryptedToken('myEmail');
+      expect(encryptedToken).to.be.a('string');
+    });
+  });
+});
+
+// ////////////////////////////////////
+// Testing models concerning Parcel //
+// ////////////////////////////////////
+describe('##### Parcel class', function () {
+  // Testing get all parcels
+  describe('# get all parcel delivery order', function () {
+    it('should return an array', function () {
+      var allParcel = parcel.getAllParcel();
+      assert.isArray(allParcel);
+    });
+  });
+
+  // Testing get all parcels for a specific user
+  describe('# get all for parcel delivery order for a specific user', function () {
+    it('should return an array', function () {
+      var allParcel = parcel.getAllParcelByUser('011');
+      assert.isArray(allParcel);
+    });
+  });
+
+  // Testing get parcel order price
+  describe('# get price for a parcel by its weight', function () {
+    it('should return a number', function () {
+      var price = parcel.getParcelPrice('500');
+      assert.isNumber(price);
     });
   });
 });

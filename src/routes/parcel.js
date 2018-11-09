@@ -32,7 +32,21 @@ router.post('/', checkAuth, (request, response) => {
 
   const user = new User();
   const userId = user.getUserIdByToken(authKey);
-  console.log(userId);
+
+  if (!parcelName || !description || !pickupLocation || !destination || !weight) {
+    response.status(401).json({
+      error: true,
+      paramsMissed: true,
+    });
+  } else {
+    const parcel = new Parcel();
+    const createParcel = parcel.createParcel(userId, parcelName, description, pickupLocation, destination, weight);
+
+    response.status(200).json({
+      error: false,
+      data: createParcel,
+    });
+  }
 });
 
 /**
