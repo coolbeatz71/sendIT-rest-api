@@ -20,11 +20,25 @@ var apiVersion = '/api/v1';
 
 _chai2.default.use(_chaiHttp2.default);
 
+// ////////////////////
+// Test for parcels //
+// ////////////////////
+
 // get all parcel delivery orders
-describe('/GET parcels', function () {
+describe('## /GET parcels', function () {
   it('it should GET all the parcels', function (done) {
     _chai2.default.request(_app2.default).get(apiVersion + '/parcels').end(function (err, res) {
       res.should.have.status(200);
+      done();
+    });
+  });
+});
+
+// test create parcel routes
+describe('## /POST create new parcel delivery order', function () {
+  it('it should POST a new parcel', function (done) {
+    _chai2.default.request(_app2.default).post(apiVersion + '/parcels').send({}).end(function (err, res) {
+      res.should.have.status(401);
       done();
     });
   });

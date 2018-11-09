@@ -52,7 +52,21 @@ router.post('/', _authMiddleware2.default, function (request, response) {
 
   var user = new _user2.default();
   var userId = user.getUserIdByToken(authKey);
-  console.log(userId);
+
+  if (!parcelName || !description || !pickupLocation || !destination || !weight) {
+    response.status(401).json({
+      error: true,
+      paramsMissed: true
+    });
+  } else {
+    var parcel = new _parcel2.default();
+    var createParcel = parcel.createParcel(userId, parcelName, description, pickupLocation, destination, weight);
+
+    response.status(200).json({
+      error: false,
+      data: createParcel
+    });
+  }
 });
 
 /**
