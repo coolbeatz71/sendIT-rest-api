@@ -2,7 +2,7 @@
     {
         "orderId": "001",
         "sender" : {
-            "id": "001",
+            "id": "001"
         },
         "parcelName": "Lg TV Screen",
         "Description": "Lg TV Screen 1024x720, HD bought from Dubai",
@@ -11,13 +11,13 @@
         "status" : "In transit",
         "pickupLocation": "Rwanda", 
         "presentLocation": "Rwanda",
-        "destination": "Uganda",
+        "destination": "Uganda"
     },
 
     {
         "orderId": "002",
         "sender" : {
-            "id": "001",
+            "id": "001"
         },
         "parcelName": "Nike shoes",
         "Description": "Nike shoes, blue color and bought from China",
@@ -26,13 +26,13 @@
         "status" : "In transit",
         "pickupLocation": "Nigeria", 
         "presentLocation": "Rwanda",
-        "destination": "Uganda",
+        "destination": "Uganda"
     },
 
     {
         "orderId": "003",
         "sender" : {
-            "id": "002",
+            "id": "002"
         },
         "parcelName": "Clothes",
         "Description": "Pant and Shirt for girls bought from DR Congo",
@@ -41,13 +41,13 @@
         "status" : "delivered",
         "pickupLocation": "Uganda", 
         "presentLocation": "Rwanda",
-        "destination": "Kenya",
+        "destination": "Kenya"
     },
 
     {
         "orderId": "004",
         "sender" : {
-            "id": "003",
+            "id": "003"
         },
         "parcelName": "Dell Computers",
         "Description": "Dell Inspiron 2531, white color with 500GB HDD",
@@ -56,6 +56,6 @@
         "status" : "delivered",
         "pickupLocation": "Kenya", 
         "presentLocation": "DR Congo",
-        "destination": "Nigera",
+        "destination": "Nigera"
     }
 ]

@@ -13,19 +13,27 @@ router.post('/signIn', (request, response) => {
   // get sign data from the request body
   const { email, password } = request.body;
 
-  const user = new User();
-  const userInfo = user.getUser(email, password);
 
-  if (userInfo) {
-    response.status(200).json({
-      error: false,
-      data: userInfo,
+  if (!email || !password) {
+    response.status(401).json({
+      error: true,
+      emptyParams: true,
     });
   } else {
-    response.status(404).json({
-      error: true,
-      message: 'No user found with these credentials',
-    });
+    const user = new User();
+    const userInfo = user.getUser(email, password);
+
+    if (userInfo) {
+      response.status(200).json({
+        error: false,
+        data: userInfo,
+      });
+    } else {
+      response.status(401).json({
+        error: true,
+        message: 'No user found with these credentials',
+      });
+    }
   }
 });
 
@@ -41,19 +49,26 @@ router.post('/signUp', (request, response) => {
     password,
   } = request.body;
 
-  const user = new User();
-  const signUp = user.createUser(firstName, lastName, email, password);
-
-  if (!signUp) {
+  if (!firstName || !lastName || !email || !password) {
     response.status(401).json({
       error: true,
-      userExist: true,
+      emptyParams: true,
     });
   } else {
-    response.status(201).json({
-      error: false,
-      data: signUp,
-    });
+    const user = new User();
+    const signUp = user.createUser(firstName, lastName, email, password);
+
+    if (!signUp) {
+      response.status(401).json({
+        error: true,
+        userExist: true,
+      });
+    } else {
+      response.status(201).json({
+        error: false,
+        data: signUp,
+      });
+    }
   }
 });
 

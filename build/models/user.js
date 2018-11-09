@@ -6,6 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _crypto = require('crypto');
+
+var _crypto2 = _interopRequireDefault(_crypto);
+
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
@@ -55,7 +59,8 @@ var User = function () {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        password: password
+        password: password,
+        token: this.getEncryptedToken(email)
       };
 
       var userData = this.app.readDataFile(userFilePath);
@@ -145,6 +150,16 @@ var User = function () {
     key: 'getUserId',
     value: function getUserId() {
       return this.userId;
+    }
+  }, {
+    key: 'getEncryptedToken',
+    value: function getEncryptedToken(email) {
+      var cipher = _crypto2.default.createCipher('aes192', email);
+
+      this.encrypted = cipher.update('some clear text data', 'utf8', 'hex');
+      this.encrypted += cipher.final('hex');
+
+      return this.encrypted;
     }
   }]);
 

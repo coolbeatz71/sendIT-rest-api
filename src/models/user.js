@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import path from 'path';
 import App from './app';
 
@@ -33,6 +34,7 @@ export default class User {
       lastName,
       email,
       password,
+      token: this.getEncryptedToken(email),
     };
 
     const userData = this.app.readDataFile(userFilePath);
@@ -104,5 +106,14 @@ export default class User {
    */
   getUserId() {
     return this.userId;
+  }
+
+  getEncryptedToken(email) {
+    const cipher = crypto.createCipher('aes192', email);
+
+    this.encrypted = cipher.update('some clear text data', 'utf8', 'hex');
+    this.encrypted += cipher.final('hex');
+
+    return this.encrypted;
   }
 }
