@@ -2,7 +2,7 @@ import express from 'express';
 
 // importing models
 import Admin from '../models/admin';
-import checkAuthAdmin from '../authMiddleware';
+import checkAuthAdmin from '../middleware/admin';
 
 const router = express.Router();
 

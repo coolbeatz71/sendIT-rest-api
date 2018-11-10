@@ -3,7 +3,7 @@ import express from 'express';
 // importing models
 import User from '../models/user';
 import Parcel from '../models/parcel';
-import checkAuth from '../authMiddleware';
+import checkAuth from '../middleware/user';
 
 const router = express.Router();
 
@@ -14,7 +14,6 @@ const router = express.Router();
 router.post('/signIn', (request, response) => {
   // get sign data from the request body
   const { email, password } = request.body;
-
 
   if (!email || !password) {
     response.status(401).json({
@@ -87,6 +86,37 @@ router.get('/:userId/parcels', checkAuth, (request, response) => {
   response.status(200).json({
     error: false,
     data: getParcel,
+  });
+});
+
+/**
+ * route to get the number of parcels delivery orders by a specific user
+ * @method GET
+ */
+router.get('/parcels/number', checkAuth, (request, response) => {
+  // split the header value to get only teh authKey (Bearer wuyhdu3Y488478Eehjh...)
+  const authKey = request.headers.authorization.split(' ')[1];
+
+  const delivered = 'delivered';
+  const inTransit = 'in transit';
+  const cancelled = 'cancelled';
+  // verify the authKey
+  const user = new User();
+  const userId = user.getUserIdByToken(authKey);
+
+  const all = user.getParcelNumber(userId);
+  const parcelDelivered = user.getParcelNumber(userId, delivered);
+  const parcelInTransit = user.getParcelNumber(userId, inTransit);
+  const parcelCancelled = user.getParcelNumber(userId, cancelled);
+
+  response.status(200).json({
+    error: false,
+    data: {
+      all,
+      delivered: parcelDelivered,
+      inTransit: parcelInTransit,
+      cancelled: parcelCancelled,
+    },
   });
 });
 

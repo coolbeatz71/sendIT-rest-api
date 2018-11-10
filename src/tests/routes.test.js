@@ -125,6 +125,19 @@ describe('/GET /:userId/parcels', () => {
   });
 });
 
+// get the number for parcel delivery order per category
+describe('/GET /parcels/number', () => {
+  it('should get the number for parcel delivery order per category', (done) => {
+    chai.request(app)
+      .get(`${apiVersion}/parcels/number`)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+});
+
+
 // //////////////////////////
 // Test for admin route    //
 // //////////////////////////
