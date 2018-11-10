@@ -65,7 +65,7 @@ router.get('/:parcelId', (request, response) => {
   const parcel = new Parcel();
   const getParcel = parcel.getParcelById(parcelId);
 
-  if(!getParcel){
+  if(getParcel){
     response.status(404).json({
       error: true,
       errorWrongId: true,
@@ -74,6 +74,37 @@ router.get('/:parcelId', (request, response) => {
     response.status(200).json({
       error: false,
       data: getParcel,
+    });
+  }
+});
+
+/**
+ * routes for editing the destination of a parcel
+ * @method PUT
+ */
+router.put('/:parcelId/destination', (request, response) => {
+  const { parcelId } = request.params;
+  const { destination } = request.body;
+
+  const user = new User();
+  
+  //get the AuthKey from the header to help retrieving the userId 
+  const authKey = request.headers.authorization.split(' ')[1];
+
+  //get the userId
+  const userId = user.getUserIdByToken(authKey);
+
+  const editDestination = user.editparcelDestination(userId, parcelId, destination);
+
+  if(!editDestination){
+    response.status(401).json({
+      error: true,
+      errorEdit: true,
+    });
+  } else {
+    response.status(200).json({
+      error: false,
+      data: editDestination,
     });
   }
 });
