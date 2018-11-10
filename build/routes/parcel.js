@@ -77,7 +77,7 @@ router.post('/', _authMiddleware2.default, function (request, response) {
  * route to fetch a specific delivery order by its ID
  * @method GET
  */
-router.get('/:orderId', function (request, response) {
+router.get('/:orderId', _authMiddleware2.default, function (request, response) {
   var orderId = request.params.orderId;
 
 
@@ -101,7 +101,7 @@ router.get('/:orderId', function (request, response) {
  * routes for editing the destination of a parcel
  * @method PUT
  */
-router.put('/:parcelId/destination', function (request, response) {
+router.put('/:parcelId/destination', _authMiddleware2.default, function (request, response) {
   var parcelId = request.params.parcelId;
   var destination = request.body.destination;
 
@@ -129,7 +129,7 @@ router.put('/:parcelId/destination', function (request, response) {
   }
 });
 
-router.put('/:parcelId/cancel', function (request, response) {
+router.put('/:parcelId/cancel', _authMiddleware2.default, function (request, response) {
   var parcelId = request.params.parcelId;
 
 

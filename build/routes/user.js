@@ -51,7 +51,7 @@ router.post('/signIn', function (request, response) {
     } else {
       response.status(401).json({
         error: true,
-        message: 'No user found with these credentials'
+        errorWrongParams: true
       });
     }
   }

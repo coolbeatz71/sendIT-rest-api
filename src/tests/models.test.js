@@ -1,7 +1,11 @@
 import chai from 'chai';
+import path from 'path';
+
+// importing models
 import Parcel from '../models/parcel';
 import User from '../models/user';
 import Admin from '../models/admin';
+import App from '../models/app';
 
 const should = chai.should();
 const { expect, assert } = chai;
@@ -9,6 +13,7 @@ const { expect, assert } = chai;
 const user = new User();
 const parcel = new Parcel();
 const admin = new Admin();
+const app = new App();
 
 // //////////////////////////////////
 // Testing models concerning user //
@@ -160,6 +165,36 @@ describe('##### Admin class', () => {
     it('should return some value', () => {
       const isTokenValid = admin.getAdminIdByToken('authkey');
       assert.isNotNull(isTokenValid);
+    });
+  });
+});
+
+// ////////////////////////////////////////////////////////
+// Testing models concerning App (read & write on file)  //
+// ////////////////////////////////////////////////////////
+describe('#### Testing App Model', () => {
+  const userFilePath = path.resolve(__dirname, '../../files/users.json');
+  const adminFilePath = path.resolve(__dirname, '../../files/admin.json');
+  const parcelFilePath = path.resolve(__dirname, '../../files/parcels.json');
+
+  describe('# Reading file method For userFileData', () => {
+    it('should return an array or object', () => {
+      const userFile = app.readDataFile(userFilePath);
+      assert.isOk(userFile);
+    });
+  });
+
+  describe('# Reading file method For parcelFileData', () => {
+    it('should return an array or object', () => {
+      const parcelFile = app.readDataFile(parcelFilePath);
+      assert.isOk(parcelFile);
+    });
+  });
+
+  describe('# Reading file method For adminFileData', () => {
+    it('should return an array or object', () => {
+      const adminFile = app.readDataFile(adminFilePath);
+      assert.isOk(adminFile);
     });
   });
 });
