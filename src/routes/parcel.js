@@ -65,7 +65,7 @@ router.get('/:orderId', checkAuth, (request, response) => {
   const parcel = new Parcel();
   const getParcel = parcel.getParcelById(orderId);
 
-  if(getParcel){
+  if(!getParcel){
     response.status(404).json({
       error: true,
       errorWrongId: true,

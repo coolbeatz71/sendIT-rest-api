@@ -84,7 +84,7 @@ router.get('/:orderId', _user4.default, function (request, response) {
   var parcel = new _parcel2.default();
   var getParcel = parcel.getParcelById(orderId);
 
-  if (getParcel) {
+  if (!getParcel) {
     response.status(404).json({
       error: true,
       errorWrongId: true
