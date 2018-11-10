@@ -64,7 +64,7 @@
         "description": "Techno smarthone mark 'Techno Sparks k7'",
         "weight": "20",
         "price": 10000,
-        "status": "in transit",
+        "status": "cancelled",
         "pickupLocation": "Rwanda",
         "presentLocation": "",
         "destination": "Kenya"
