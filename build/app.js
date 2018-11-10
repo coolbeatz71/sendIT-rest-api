@@ -12,13 +12,13 @@ var _bodyParser = require('body-parser');
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _parcel = require('./routes/parcel');
-
-var _parcel2 = _interopRequireDefault(_parcel);
-
 var _user = require('./routes/user');
 
 var _user2 = _interopRequireDefault(_user);
+
+var _parcel = require('./routes/parcel');
+
+var _parcel2 = _interopRequireDefault(_parcel);
 
 var _admin = require('./routes/admin');
 
