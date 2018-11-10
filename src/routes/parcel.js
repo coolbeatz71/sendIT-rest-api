@@ -109,4 +109,30 @@ router.put('/:parcelId/destination', (request, response) => {
   }
 });
 
+router.put('/:parcelId/cancel', (request, response) => {
+  const { parcelId } = request.params;
+
+  const user = new User();
+  
+  //get the AuthKey from the header to help retrieving the userId 
+  const authKey = request.headers.authorization.split(' ')[1];
+
+  //get the userId
+  const userId = user.getUserIdByToken(authKey);
+
+  const cancel = user.cancelParcel(userId, parcelId);
+
+  if(!cancel){
+    response.status(401).json({
+      error: true,
+      errorCancel: true,
+    });
+  } else {
+    response.status(200).json({
+      error: false,
+      data: cancel,
+    });
+  }
+});
+
 module.exports = router;
