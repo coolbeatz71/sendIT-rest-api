@@ -266,6 +266,31 @@ var User = function () {
       this.app.writeDataFile(parcelFilePath, parcelData);
       return parcel;
     }
+
+    /**
+     * get Number of parcel delivery order by categories
+     * @param  string userId
+     * @param  string status
+     * @return Number
+     */
+
+  }, {
+    key: 'getParcelNumber',
+    value: function getParcelNumber(userId, status) {
+      var parcelData = this.app.readDataFile(parcelFilePath);
+
+      // if status is undefined, we should getAllParcel
+      if (status) {
+        var _parcel = parcelData.filter(function (el) {
+          return el.sender.id === userId && el.status === status;
+        });
+        return _parcel.length;
+      }
+      var parcel = parcelData.filter(function (el) {
+        return el.sender.id === userId;
+      });
+      return parcel.length;
+    }
   }]);
 
   return User;
