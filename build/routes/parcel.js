@@ -77,12 +77,12 @@ router.post('/', _authMiddleware2.default, function (request, response) {
  * route to fetch a specific delivery order by its ID
  * @method GET
  */
-router.get('/:parcelId', function (request, response) {
-  var parcelId = request.params.parcelId;
+router.get('/:orderId', function (request, response) {
+  var orderId = request.params.orderId;
 
 
   var parcel = new _parcel2.default();
-  var getParcel = parcel.getParcelById(parcelId);
+  var getParcel = parcel.getParcelById(orderId);
 
   if (getParcel) {
     response.status(404).json({

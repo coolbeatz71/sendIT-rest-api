@@ -59,11 +59,11 @@ router.post('/', checkAuth, (request, response) => {
  * route to fetch a specific delivery order by its ID
  * @method GET
  */
-router.get('/:parcelId', (request, response) => {
-  const { parcelId } = request.params;
+router.get('/:orderId', (request, response) => {
+  const { orderId } = request.params;
 
   const parcel = new Parcel();
-  const getParcel = parcel.getParcelById(parcelId);
+  const getParcel = parcel.getParcelById(orderId);
 
   if(getParcel){
     response.status(404).json({
