@@ -12,9 +12,9 @@ var _parcel = require('../models/parcel');
 
 var _parcel2 = _interopRequireDefault(_parcel);
 
-var _authMiddleware = require('../authMiddleware');
+var _user3 = require('../middleware/user');
 
-var _authMiddleware2 = _interopRequireDefault(_authMiddleware);
+var _user4 = _interopRequireDefault(_user3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -96,7 +96,7 @@ router.post('/signUp', function (request, response) {
  * route to fetch all parcels delivery orders by a specific user
  * @method GET
  */
-router.get('/:userId/parcels', _authMiddleware2.default, function (request, response) {
+router.get('/:userId/parcels', _user4.default, function (request, response) {
   var userId = request.params.userId;
 
 
@@ -106,6 +106,37 @@ router.get('/:userId/parcels', _authMiddleware2.default, function (request, resp
   response.status(200).json({
     error: false,
     data: getParcel
+  });
+});
+
+/**
+ * route to get the number of parcels delivery orders by a specific user
+ * @method GET
+ */
+router.get('/parcels/number', _user4.default, function (request, response) {
+  // split the header value to get only teh authKey (Bearer wuyhdu3Y488478Eehjh...)
+  var authKey = request.headers.authorization.split(' ')[1];
+
+  var delivered = 'delivered';
+  var inTransit = 'in transit';
+  var cancelled = 'cancelled';
+  // verify the authKey
+  var user = new _user2.default();
+  var userId = user.getUserIdByToken(authKey);
+
+  var all = user.getParcelNumber(userId);
+  var parcelDelivered = user.getParcelNumber(userId, delivered);
+  var parcelInTransit = user.getParcelNumber(userId, inTransit);
+  var parcelCancelled = user.getParcelNumber(userId, cancelled);
+
+  response.status(200).json({
+    error: false,
+    data: {
+      all: all,
+      delivered: parcelDelivered,
+      inTransit: parcelInTransit,
+      cancelled: parcelCancelled
+    }
   });
 });
 

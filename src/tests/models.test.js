@@ -98,6 +98,44 @@ describe('##### User class', () => {
       expect(encryptedToken).to.be.a('string');
     });
   });
+
+  describe('#### Testing getParcelNumber method', () => {
+    describe('# When the status is undefined', () => {
+      const userId = '001';
+      const status = undefined;
+      it('should return Number', () => {
+        const parcelNumber = user.getParcelNumber(userId, status);
+        assert.isNumber(parcelNumber);
+      });
+    });
+
+    describe('# When the status is delivered', () => {
+      const userId = '001';
+      const status = 'delivered';
+      it('should return Number', () => {
+        const parcelNumber = user.getParcelNumber(userId, status);
+        assert.isNumber(parcelNumber);
+      });
+    });
+
+    describe('# When the status is in transit', () => {
+      const userId = '001';
+      const status = 'in transit';
+      it('should return Number', () => {
+        const parcelNumber = user.getParcelNumber(userId, status);
+        assert.isNumber(parcelNumber);
+      });
+    });
+
+    describe('# When the status is cancelled', () => {
+      const userId = '001';
+      const status = 'cancelled';
+      it('should return Number', () => {
+        const parcelNumber = user.getParcelNumber(userId, status);
+        assert.isNumber(parcelNumber);
+      });
+    });
+  });
 });
 
 // ////////////////////////////////////

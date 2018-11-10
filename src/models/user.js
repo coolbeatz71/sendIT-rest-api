@@ -199,4 +199,22 @@ export default class User {
     this.app.writeDataFile(parcelFilePath, parcelData);
     return parcel;
   }
+
+  /**
+   * get Number of parcel delivery order by categories
+   * @param  string userId
+   * @param  string status
+   * @return Number
+   */
+  getParcelNumber(userId, status) {
+    const parcelData = this.app.readDataFile(parcelFilePath);
+
+    // if status is undefined, we should getAllParcel
+    if (status) {
+      const parcel = parcelData.filter(el => el.sender.id === userId && el.status === status);
+      return parcel.length;
+    }
+    const parcel = parcelData.filter(el => el.sender.id === userId);
+    return parcel.length;
+  }
 }

@@ -3,7 +3,7 @@ import express from 'express';
 // importing models
 import Parcel from '../models/parcel';
 import User from '../models/user';
-import checkAuth from '../authMiddleware';
+import checkAuth from '../middleware/user';
 
 const router = express.Router();
 
@@ -109,6 +109,10 @@ router.put('/:parcelId/destination', checkAuth, (request, response) => {
   }
 });
 
+/**
+ * routes for cancelling parcel delivery order
+ * @method PUT
+ */
 router.put('/:parcelId/cancel', checkAuth, (request, response) => {
   const { parcelId } = request.params;
 

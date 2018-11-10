@@ -12,9 +12,9 @@ var _user = require('../models/user');
 
 var _user2 = _interopRequireDefault(_user);
 
-var _authMiddleware = require('../authMiddleware');
+var _user3 = require('../middleware/user');
 
-var _authMiddleware2 = _interopRequireDefault(_authMiddleware);
+var _user4 = _interopRequireDefault(_user3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,7 +27,7 @@ var router = _express2.default.Router();
 
 
 // importing models
-router.get('/', _authMiddleware2.default, function (request, response) {
+router.get('/', _user4.default, function (request, response) {
   var parcel = new _parcel2.default();
   var getParcel = parcel.getAllParcel();
 
@@ -41,7 +41,7 @@ router.get('/', _authMiddleware2.default, function (request, response) {
  * route to create a parcel delivery order
  * @method POST
  */
-router.post('/', _authMiddleware2.default, function (request, response) {
+router.post('/', _user4.default, function (request, response) {
   // get sign data from the request body
   var _request$body = request.body,
       parcelName = _request$body.parcelName,
@@ -77,7 +77,7 @@ router.post('/', _authMiddleware2.default, function (request, response) {
  * route to fetch a specific delivery order by its ID
  * @method GET
  */
-router.get('/:orderId', _authMiddleware2.default, function (request, response) {
+router.get('/:orderId', _user4.default, function (request, response) {
   var orderId = request.params.orderId;
 
 
@@ -101,7 +101,7 @@ router.get('/:orderId', _authMiddleware2.default, function (request, response) {
  * routes for editing the destination of a parcel
  * @method PUT
  */
-router.put('/:parcelId/destination', _authMiddleware2.default, function (request, response) {
+router.put('/:parcelId/destination', _user4.default, function (request, response) {
   var parcelId = request.params.parcelId;
   var destination = request.body.destination;
 
@@ -129,7 +129,11 @@ router.put('/:parcelId/destination', _authMiddleware2.default, function (request
   }
 });
 
-router.put('/:parcelId/cancel', _authMiddleware2.default, function (request, response) {
+/**
+ * routes for cancelling parcel delivery order
+ * @method PUT
+ */
+router.put('/:parcelId/cancel', _user4.default, function (request, response) {
   var parcelId = request.params.parcelId;
 
 

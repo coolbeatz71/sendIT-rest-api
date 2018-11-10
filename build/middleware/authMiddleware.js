@@ -1,28 +1,37 @@
-// importing models
-import User from './models/user';
-import Admin from './models/admin';
+'use strict';
+
+var _user = require('./models/user');
+
+var _user2 = _interopRequireDefault(_user);
+
+var _admin = require('./models/admin');
+
+var _admin2 = _interopRequireDefault(_admin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Middleware for the user
  */
-const checkAuth = (request, response, next) => {
+// importing models
+var checkAuth = function checkAuth(request, response, next) {
   if (!request.headers.authorization || request.headers.authorization.indexOf('Bearer ') === -1) {
     response.status(401).json({
       error: true,
-      authKeyMissed: true,
+      authKeyMissed: true
     });
   } else {
     // split the header value to get only teh authKey (Bearer wuyhdu3Y488478Eehjh...)
-    const authKey = request.headers.authorization.split(' ')[1];
+    var authKey = request.headers.authorization.split(' ')[1];
 
     // verify the authKey
-    const user = new User();
-    const isTokenValid = user.isTokenValid(authKey);
+    var user = new _user2.default();
+    var isTokenValid = user.isTokenValid(authKey);
 
     if (!isTokenValid) {
       response.status(401).json({
         error: true,
-        authKeyInvalid: true,
+        authKeyInvalid: true
       });
     } else {
       next();
@@ -33,24 +42,24 @@ const checkAuth = (request, response, next) => {
 /**
  * Middleware for the admin
  */
-const checkAuthAdmin = (request, response, next) => {
+var checkAuthAdmin = function checkAuthAdmin(request, response, next) {
   if (!request.headers.authorization || request.headers.authorization.indexOf('Bearer ') === -1) {
     response.status(401).json({
       error: true,
-      authKeyMissed: true,
+      authKeyMissed: true
     });
   } else {
     // split the header value to get only teh authKey (Bearer wuyhdu3Y488478Eehjh...)
-    const authKey = request.headers.authorization.split(' ')[1];
+    var authKey = request.headers.authorization.split(' ')[1];
 
     // verify the authKey
-    const admin = new Admin();
-    const isTokenValid = admin.isTokenValid(authKey);
+    var admin = new _admin2.default();
+    var isTokenValid = admin.isTokenValid(authKey);
 
     if (!isTokenValid) {
       response.status(401).json({
         error: true,
-        authKeyInvalid: true,
+        authKeyInvalid: true
       });
     } else {
       next();

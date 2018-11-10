@@ -8,9 +8,9 @@ var _admin = require('../models/admin');
 
 var _admin2 = _interopRequireDefault(_admin);
 
-var _authMiddleware = require('../authMiddleware');
+var _admin3 = require('../middleware/admin');
 
-var _authMiddleware2 = _interopRequireDefault(_authMiddleware);
+var _admin4 = _interopRequireDefault(_admin3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -55,7 +55,7 @@ router.post('/signIn', function (request, response) {
  * admin route to edit parcel delivery order (presentLocation, status)
  * @method POST
  */
-router.put('/parcels/:parcelId/edit', _authMiddleware2.default, function (request, response) {
+router.put('/parcels/:parcelId/edit', _admin4.default, function (request, response) {
   var parcelId = request.params.parcelId;
 
   // get body params
