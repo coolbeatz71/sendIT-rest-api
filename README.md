@@ -1,7 +1,3 @@
-
-[![Coverage Status](https://coveralls.io/repos/github/coolbeatz71/sendIT-rest-api/badge.svg?branch=feature)](https://coveralls.io/github/coolbeatz71/sendIT-rest-api?branch=feature)
-
-
 [![Build Status](https://travis-ci.org/coolbeatz71/sendIT-rest-api.svg?branch=master)](https://travis-ci.org/coolbeatz71/sendIT-rest-api)         [![Coverage Status](https://coveralls.io/repos/github/coolbeatz71/sendIT-rest-api/badge.svg?branch=feature)](https://coveralls.io/github/coolbeatz71/sendIT-rest-api?branch=feature)
 
 # sendIT-rest-api
