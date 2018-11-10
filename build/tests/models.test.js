@@ -120,6 +120,44 @@ describe('##### User class', function () {
       expect(encryptedToken).to.be.a('string');
     });
   });
+
+  describe('#### Testing getParcelNumber method', function () {
+    describe('# When the status is undefined', function () {
+      var userId = '001';
+      var status = undefined;
+      it('should return Number', function () {
+        var parcelNumber = user.getParcelNumber(userId, status);
+        assert.isNumber(parcelNumber);
+      });
+    });
+
+    describe('# When the status is delivered', function () {
+      var userId = '001';
+      var status = 'delivered';
+      it('should return Number', function () {
+        var parcelNumber = user.getParcelNumber(userId, status);
+        assert.isNumber(parcelNumber);
+      });
+    });
+
+    describe('# When the status is in transit', function () {
+      var userId = '001';
+      var status = 'in transit';
+      it('should return Number', function () {
+        var parcelNumber = user.getParcelNumber(userId, status);
+        assert.isNumber(parcelNumber);
+      });
+    });
+
+    describe('# When the status is cancelled', function () {
+      var userId = '001';
+      var status = 'cancelled';
+      it('should return Number', function () {
+        var parcelNumber = user.getParcelNumber(userId, status);
+        assert.isNumber(parcelNumber);
+      });
+    });
+  });
 });
 
 // ////////////////////////////////////
