@@ -7,13 +7,30 @@ import User from '../models/user';
 import Admin from '../models/admin';
 import App from '../models/app';
 
-const should = chai.should();
 const { expect, assert } = chai;
 
 const user = new User();
 const parcel = new Parcel();
 const admin = new Admin();
 const app = new App();
+
+const userInfo = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+};
+
+describe('#### Testing property of object', () => {
+  describe('# userInfo object', () => {
+    it('should have some property ', () => {
+      expect(userInfo).to.have.property('firstName');
+      expect(userInfo).to.have.property('lastName');
+      expect(userInfo).to.have.property('email');
+      expect(userInfo).to.have.property('password');
+    });
+  });
+});
 
 // //////////////////////////////////
 // Testing models concerning user //

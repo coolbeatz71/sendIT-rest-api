@@ -1,8 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import parcelsRoutes from './routes/parcel';
 import userRoutes from './routes/user';
+import parcelsRoutes from './routes/parcel';
 import adminRoutes from './routes/admin';
 
 const app = express();

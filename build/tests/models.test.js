@@ -27,7 +27,6 @@ var _app2 = _interopRequireDefault(_app);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // importing models
-var should = _chai2.default.should();
 var expect = _chai2.default.expect,
     assert = _chai2.default.assert;
 
@@ -36,6 +35,24 @@ var user = new _user2.default();
 var parcel = new _parcel2.default();
 var admin = new _admin2.default();
 var app = new _app2.default();
+
+var userInfo = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: ''
+};
+
+describe('#### Testing property of object', function () {
+  describe('# userInfo object', function () {
+    it('should have some property ', function () {
+      expect(userInfo).to.have.property('firstName');
+      expect(userInfo).to.have.property('lastName');
+      expect(userInfo).to.have.property('email');
+      expect(userInfo).to.have.property('password');
+    });
+  });
+});
 
 // //////////////////////////////////
 // Testing models concerning user //
