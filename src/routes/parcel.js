@@ -61,10 +61,21 @@ router.post('/', checkAuth, (request, response) => {
  */
 router.get('/:parcelId', (request, response) => {
   const { parcelId } = request.params;
-  response.status(200).json({
-    message: 'get request to /parcels for an individual parcel order',
-    parcelId,
-  });
+
+  const parcel = new Parcel();
+  const getParcel = parcel.getParcelById(parcelId);
+
+  if(!getParcel){
+    response.status(404).json({
+      error: true,
+      errorWrongId: true,
+    });
+  }else{
+    response.status(200).json({
+      error: false,
+      data: getParcel,
+    });
+  }
 });
 
 module.exports = router;

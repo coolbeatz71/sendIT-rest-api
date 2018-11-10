@@ -67,6 +67,7 @@ export default class Parcel {
 
   /**
    * get all parcel delivery order for a particular user
+   *
    * @param  string id
    * @return array
    */
@@ -76,7 +77,24 @@ export default class Parcel {
     const parcel = parcelData.filter(el => el.sender.id === id);
 
     if (parcel.length < 1) {
-      return null;
+      return undefined;
+    }
+    return parcel;
+  }
+
+  /**
+   * get a single parcel order by orderId
+   *
+   * @param  string orderId
+   * @return string
+   */
+  getParcelById(orderId) {
+    const parcelData = this.app.readDataFile(parcelFilePath);
+
+    const parcel = parcelData.filter(el => el.orderId === orderId);
+
+    if (parcel.length < 1) {
+      return undefined;
     }
     return parcel;
   }

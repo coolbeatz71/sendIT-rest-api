@@ -23,6 +23,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var adminFilePath = _path2.default.resolve(__dirname, '../../files/admin.json');
+var parcelFilePath = _path2.default.resolve(__dirname, '../../files/parcels.json');
 
 var Admin = function () {
   function Admin(email, password) {
@@ -122,6 +123,43 @@ var Admin = function () {
       });
 
       return user ? user.id : false;
+    }
+
+    /**
+     * edit presentLocation or status for a delivery order
+     * @param  string userId
+     * @param  string parcelId
+     * @param  object params
+     * @return {[type]}
+     */
+
+  }, {
+    key: 'editparcel',
+    value: function editparcel(userId, parcelId) {
+      var params = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+      // get presentLocation and status
+      var presentLocation = params.presentLocation,
+          status = params.status;
+
+      // read parcel json file
+
+      var parcelData = this.app.readDataFile(parcelFilePath);
+
+      var parcel = parcelData.find(function (el) {
+        return el.orderId === parcelId && el.sender.id === userId;
+      });
+
+      if (!parcel || parcel.status === 'delivered') {
+        return false;
+      }
+
+      // edit its presentLocation or status
+      parcel.presentLocation = presentLocation;
+      parcel.status = status;
+
+      this.app.writeDataFile(parcelFilePath, parcelData);
+      return parcel;
     }
   }]);
 

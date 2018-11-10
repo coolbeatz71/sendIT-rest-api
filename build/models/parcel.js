@@ -93,6 +93,7 @@ var Parcel = function () {
 
     /**
      * get all parcel delivery order for a particular user
+     *
      * @param  string id
      * @return array
      */
@@ -107,7 +108,29 @@ var Parcel = function () {
       });
 
       if (parcel.length < 1) {
-        return null;
+        return undefined;
+      }
+      return parcel;
+    }
+
+    /**
+     * get a single parcel order by orderId
+     *
+     * @param  string orderId
+     * @return string
+     */
+
+  }, {
+    key: 'getParcelById',
+    value: function getParcelById(orderId) {
+      var parcelData = this.app.readDataFile(parcelFilePath);
+
+      var parcel = parcelData.filter(function (el) {
+        return el.orderId === orderId;
+      });
+
+      if (parcel.length < 1) {
+        return undefined;
       }
       return parcel;
     }
