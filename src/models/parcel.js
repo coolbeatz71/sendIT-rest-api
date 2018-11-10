@@ -77,7 +77,7 @@ export default class Parcel {
     const parcel = parcelData.filter(el => el.sender.id === id);
 
     if (parcel.length < 1) {
-      return undefined;
+      return null;
     }
     return parcel;
   }
@@ -94,7 +94,7 @@ export default class Parcel {
     const parcel = parcelData.filter(el => el.orderId === orderId);
 
     if (parcel.length < 1) {
-      return undefined;
+      return null;
     }
     return parcel;
   }

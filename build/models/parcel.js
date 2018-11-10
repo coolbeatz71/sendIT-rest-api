@@ -108,7 +108,7 @@ var Parcel = function () {
       });
 
       if (parcel.length < 1) {
-        return undefined;
+        return null;
       }
       return parcel;
     }
@@ -130,7 +130,7 @@ var Parcel = function () {
       });
 
       if (parcel.length < 1) {
-        return undefined;
+        return null;
       }
       return parcel;
     }
