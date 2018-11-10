@@ -218,8 +218,8 @@ var User = function () {
      */
 
   }, {
-    key: 'editparcelDestination',
-    value: function editparcelDestination(userId, parcelId, destination) {
+    key: 'editParcelDestination',
+    value: function editParcelDestination(userId, parcelId, destination) {
       // read parcel json file
       var parcelData = this.app.readDataFile(parcelFilePath);
 

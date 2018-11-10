@@ -114,7 +114,7 @@ router.put('/:parcelId/destination', _user4.default, function (request, response
   //get the userId
   var userId = user.getUserIdByToken(authKey);
 
-  var editDestination = user.editparcelDestination(userId, parcelId, destination);
+  var editDestination = user.editParcelDestination(userId, parcelId, destination);
 
   if (!editDestination) {
     response.status(401).json({

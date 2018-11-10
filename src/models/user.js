@@ -159,7 +159,7 @@ export default class User {
    * @param  string  destination
    * @return boolean || array
    */
-  editparcelDestination(userId, parcelId, destination) {
+  editParcelDestination(userId, parcelId, destination) {
     // read parcel json file
     const parcelData = this.app.readDataFile(parcelFilePath);
 
