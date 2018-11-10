@@ -8,10 +8,10 @@
         "Description": "Lg TV Screen 1024x720, HD bought from Dubai",
         "weight": "5Kg",
         "price": "Rwf 2500",
-        "status": "In transit",
+        "status": "in transit",
         "pickupLocation": "Rwanda",
         "presentLocation": "Rwanda",
-        "destination": "Uganda"
+        "destination": "new destination"
     },
     {
         "orderId": "002",
@@ -22,7 +22,7 @@
         "Description": "Nike shoes, blue color and bought from China",
         "weight": "10Kg",
         "price": "Rwf 5000",
-        "status": "In transit",
+        "status": "in transit",
         "pickupLocation": "Nigeria",
         "presentLocation": "Rwanda",
         "destination": "Uganda"

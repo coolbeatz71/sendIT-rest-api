@@ -23,6 +23,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var userFilePath = _path2.default.resolve(__dirname, '../../files/users.json');
+var parcelFilePath = _path2.default.resolve(__dirname, '../../files/parcels.json');
 
 var User = function () {
   function User(firstName, lastName, email, password) {
@@ -205,6 +206,65 @@ var User = function () {
       this.encrypted += cipher.final('hex');
 
       return this.encrypted;
+    }
+
+    /**
+     * edit the destination of parcel by a user
+     *
+     * @param  string userId
+     * @param  string parcelId
+     * @param  string  destination
+     * @return boolean || array
+     */
+
+  }, {
+    key: 'editparcelDestination',
+    value: function editparcelDestination(userId, parcelId, destination) {
+      // read parcel json file
+      var parcelData = this.app.readDataFile(parcelFilePath);
+
+      var parcel = parcelData.find(function (el) {
+        return el.orderId === parcelId && el.sender.id === userId;
+      });
+
+      if (!parcel || parcel.status === 'delivered') {
+        return false;
+      }
+
+      // edit its destination
+      parcel.destination = destination;
+
+      this.app.writeDataFile(parcelFilePath, parcelData);
+      return parcel;
+    }
+
+    /**
+     * Cancel a specific parcel delivery order
+     *
+     * @param  string userId
+     * @param  string parcelId
+     * @return boolean || array
+     */
+
+  }, {
+    key: 'cancelParcel',
+    value: function cancelParcel(userId, parcelId) {
+      // read parcel json file
+      var parcelData = this.app.readDataFile(parcelFilePath);
+
+      var parcel = parcelData.find(function (el) {
+        return el.orderId === parcelId && el.sender.id === userId;
+      });
+
+      if (!parcel || parcel.status === 'delivered') {
+        return false;
+      }
+
+      // edit its status instead of removing it from the array
+      parcel.status = 'cancelled';
+
+      this.app.writeDataFile(parcelFilePath, parcelData);
+      return parcel;
     }
   }]);
 

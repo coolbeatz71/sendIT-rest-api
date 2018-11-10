@@ -3,6 +3,7 @@ import path from 'path';
 import App from './app';
 
 const adminFilePath = path.resolve(__dirname, '../../files/admin.json');
+const parcelFilePath = path.resolve(__dirname, '../../files/parcels.json');
 
 export default class Admin {
   constructor(email, password) {
@@ -79,5 +80,33 @@ export default class Admin {
     const user = userData.find(item => item.token === authKey);
 
     return user ? user.id : false;
+  }
+
+  /**
+   * edit presentLocation or status for a delivery order
+   * @param  string userId
+   * @param  string parcelId
+   * @param  object params
+   * @return {[type]}
+   */
+  editparcel(userId, parcelId, params = {}) {
+    // get presentLocation and status
+    const { presentLocation, status } = params;
+
+    // read parcel json file
+    const parcelData = this.app.readDataFile(parcelFilePath);
+
+    const parcel = parcelData.find(el => el.orderId === parcelId && el.sender.id === userId);
+
+    if (!parcel || parcel.status === 'delivered') {
+      return false;
+    }
+
+    // edit its presentLocation or status
+    parcel.presentLocation = presentLocation;
+    parcel.status = status;
+
+    this.app.writeDataFile(parcelFilePath, parcelData);
+    return parcel;
   }
 }

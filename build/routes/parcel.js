@@ -80,10 +80,21 @@ router.post('/', _authMiddleware2.default, function (request, response) {
 router.get('/:parcelId', function (request, response) {
   var parcelId = request.params.parcelId;
 
-  response.status(200).json({
-    message: 'get request to /parcels for an individual parcel order',
-    parcelId: parcelId
-  });
+
+  var parcel = new _parcel2.default();
+  var getParcel = parcel.getParcelById(parcelId);
+
+  if (!getParcel) {
+    response.status(404).json({
+      error: true,
+      errorWrongId: true
+    });
+  } else {
+    response.status(200).json({
+      error: false,
+      data: getParcel
+    });
+  }
 });
 
 module.exports = router;

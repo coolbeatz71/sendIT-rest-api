@@ -3,6 +3,7 @@ import path from 'path';
 import App from './app';
 
 const userFilePath = path.resolve(__dirname, '../../files/users.json');
+const parcelFilePath = path.resolve(__dirname, '../../files/parcels.json');
 
 export default class User {
   constructor(firstName, lastName, email, password) {
@@ -148,5 +149,54 @@ export default class User {
     this.encrypted += cipher.final('hex');
 
     return this.encrypted;
+  }
+
+  /**
+   * edit the destination of parcel by a user
+   *
+   * @param  string userId
+   * @param  string parcelId
+   * @param  string  destination
+   * @return boolean || array
+   */
+  editparcelDestination(userId, parcelId, destination) {
+    // read parcel json file
+    const parcelData = this.app.readDataFile(parcelFilePath);
+
+    const parcel = parcelData.find(el => el.orderId === parcelId && el.sender.id === userId);
+
+    if (!parcel || parcel.status === 'delivered') {
+      return false;
+    }
+
+    // edit its destination
+    parcel.destination = destination;
+
+    this.app.writeDataFile(parcelFilePath, parcelData);
+    return parcel;
+  }
+
+  /**
+   * Cancel a specific parcel delivery order
+   *
+   * @param  string userId
+   * @param  string parcelId
+   * @return boolean || array
+   */
+  cancelParcel(userId, parcelId) {
+    // read parcel json file
+    const parcelData = this.app.readDataFile(parcelFilePath);
+
+    const parcel = parcelData.find(el => el.orderId === parcelId && el.sender.id === userId);
+
+    if (!parcel || parcel.status === 'delivered') {
+      return false;
+    }
+
+    // edit its status instead of removing it from the array
+    parcel.status = 'cancelled';
+
+    this.app.writeDataFile(parcelFilePath, parcelData);
+    return parcel;
   }
 }
