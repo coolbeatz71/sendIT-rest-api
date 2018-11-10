@@ -22,19 +22,78 @@ const userInfo = {
   password: '',
 };
 
-describe('#### Testing property of object', () => {
-  describe('# userInfo object', () => {
-    it('should have some property ', () => {
-      expect(userInfo).to.have.property('firstName');
-      expect(userInfo).to.have.property('lastName');
-      expect(userInfo).to.have.property('email');
-      expect(userInfo).to.have.property('password');
-    });
+// //////////////////////////////////
+// Testing instance of classes     //
+// //////////////////////////////////
+describe("#### Test instance of Each Class", () => {
+  it('should be an instance of User', () => {
+    expect(user).to.be.an.instanceof(User);
+  });
+
+  it('should be an instance of Parcel', () => {
+    expect(parcel).to.be.an.instanceof(Parcel);
+  });
+
+  it('should be an instance of Admin', () => {
+    expect(admin).to.be.an.instanceof(Admin);
+  });
+});
+
+//testing length of getUserId
+describe('#### length of the getUserId()', () => {
+  it('should have length of 3', () => {
+    user.setUserId();
+    const userId = user.getUserId();
+    expect(userId).to.have.lengthOf(3);
+  });
+});
+
+describe('#### Testing methods[function] for User class', () => {
+  it('should be a function', () => {
+    user.createUser.should.be.a('function');
+    user.getUser.should.be.a('function');
+    user.getUserIdByEmail.should.be.a('function');
+    user.setUserId.should.be.a('function');
+    user.getUserId.should.be.a('function');
+    user.isTokenValid.should.be.a('function');
+    user.getUserIdByToken.should.be.a('function');
+    user.getEncryptedToken.should.be.a('function');
+    user.editParcelDestination.should.be.a('function');
+    user.cancelParcel.should.be.a('function');
+    user.getParcelNumber.should.be.a('function');
+  });
+});
+
+describe('#### Testing methods[function] for Admin class', () => {
+  it('should be a function', () => {
+    admin.getAdmin.should.be.a('function');
+    admin.getAdminIdByEmail.should.be.a('function');
+    admin.isTokenValid.should.be.a('function');
+    admin.getAdminIdByToken.should.be.a('function');
+    admin.editParcel.should.be.a('function');
+  });
+});
+
+describe('#### Testing methods[function] for App class', () => {
+  it('should be a function', () => {
+    app.readDataFile.should.be.a('function');
+    app.writeDataFile.should.be.a('function');
+  });
+});
+
+describe('#### Testing methods[function] for Parcel class', () => {
+  it('should be a function', () => {
+    parcel.createParcel.should.be.a('function');
+    parcel.getAllParcel.should.be.a('function');
+    parcel.getAllParcelByUser.should.be.a('function');
+    parcel.getParcelPrice.should.be.a('function');
+    parcel.setOrderId.should.be.a('function');
+    parcel.getOrderId.should.be.a('function');
   });
 });
 
 // //////////////////////////////////
-// Testing models concerning user //
+// Testing models concerning user  //
 // //////////////////////////////////
 describe('##### User class', () => {
   // Testing user creation
@@ -251,6 +310,17 @@ describe('#### Testing App Model', () => {
     it('should return an array or object', () => {
       const adminFile = app.readDataFile(adminFilePath);
       assert.isOk(adminFile);
+    });
+  });
+});
+
+describe('#### Testing property of object', () => {
+  describe('# userInfo object', () => {
+    it('should have some property ', () => {
+      expect(userInfo).to.have.property('firstName');
+      expect(userInfo).to.have.property('lastName');
+      expect(userInfo).to.have.property('email');
+      expect(userInfo).to.have.property('password');
     });
   });
 });

@@ -94,7 +94,7 @@ router.put('/:parcelId/destination', checkAuth, (request, response) => {
   //get the userId
   const userId = user.getUserIdByToken(authKey);
 
-  const editDestination = user.editparcelDestination(userId, parcelId, destination);
+  const editDestination = user.editParcelDestination(userId, parcelId, destination);
 
   if(!editDestination){
     response.status(401).json({
