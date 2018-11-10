@@ -99,12 +99,12 @@ var Admin = function () {
   }, {
     key: 'isTokenValid',
     value: function isTokenValid(authKey) {
-      var userData = this.app.readDataFile(adminFilePath);
-      var user = userData.find(function (item) {
+      var adminData = this.app.readDataFile(adminFilePath);
+      var admin = adminData.find(function (item) {
         return item.token === authKey;
       });
 
-      return !!user;
+      return !!admin;
     }
 
     /**
@@ -134,9 +134,9 @@ var Admin = function () {
      */
 
   }, {
-    key: 'editparcel',
-    value: function editparcel(userId, parcelId) {
-      var params = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    key: 'editParcel',
+    value: function editParcel(parcelId) {
+      var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       // get presentLocation and status
       var presentLocation = params.presentLocation,
@@ -147,7 +147,7 @@ var Admin = function () {
       var parcelData = this.app.readDataFile(parcelFilePath);
 
       var parcel = parcelData.find(function (el) {
-        return el.orderId === parcelId && el.sender.id === userId;
+        return el.orderId === parcelId;
       });
 
       if (!parcel || parcel.status === 'delivered') {

@@ -59,7 +59,7 @@ router.post('/', checkAuth, (request, response) => {
  * route to fetch a specific delivery order by its ID
  * @method GET
  */
-router.get('/:orderId', (request, response) => {
+router.get('/:orderId', checkAuth, (request, response) => {
   const { orderId } = request.params;
 
   const parcel = new Parcel();
@@ -82,7 +82,7 @@ router.get('/:orderId', (request, response) => {
  * routes for editing the destination of a parcel
  * @method PUT
  */
-router.put('/:parcelId/destination', (request, response) => {
+router.put('/:parcelId/destination', checkAuth, (request, response) => {
   const { parcelId } = request.params;
   const { destination } = request.body;
 
@@ -109,7 +109,7 @@ router.put('/:parcelId/destination', (request, response) => {
   }
 });
 
-router.put('/:parcelId/cancel', (request, response) => {
+router.put('/:parcelId/cancel', checkAuth, (request, response) => {
   const { parcelId } = request.params;
 
   const user = new User();

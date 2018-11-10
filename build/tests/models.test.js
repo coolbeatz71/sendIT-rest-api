@@ -4,6 +4,10 @@ var _chai = require('chai');
 
 var _chai2 = _interopRequireDefault(_chai);
 
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
 var _parcel = require('../models/parcel');
 
 var _parcel2 = _interopRequireDefault(_parcel);
@@ -16,8 +20,13 @@ var _admin = require('../models/admin');
 
 var _admin2 = _interopRequireDefault(_admin);
 
+var _app = require('../models/app');
+
+var _app2 = _interopRequireDefault(_app);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// importing models
 var should = _chai2.default.should();
 var expect = _chai2.default.expect,
     assert = _chai2.default.assert;
@@ -26,6 +35,7 @@ var expect = _chai2.default.expect,
 var user = new _user2.default();
 var parcel = new _parcel2.default();
 var admin = new _admin2.default();
+var app = new _app2.default();
 
 // //////////////////////////////////
 // Testing models concerning user //
@@ -177,6 +187,36 @@ describe('##### Admin class', function () {
     it('should return some value', function () {
       var isTokenValid = admin.getAdminIdByToken('authkey');
       assert.isNotNull(isTokenValid);
+    });
+  });
+});
+
+// ////////////////////////////////////////////////////////
+// Testing models concerning App (read & write on file)  //
+// ////////////////////////////////////////////////////////
+describe('#### Testing App Model', function () {
+  var userFilePath = _path2.default.resolve(__dirname, '../../files/users.json');
+  var adminFilePath = _path2.default.resolve(__dirname, '../../files/admin.json');
+  var parcelFilePath = _path2.default.resolve(__dirname, '../../files/parcels.json');
+
+  describe('# Reading file method For userFileData', function () {
+    it('should return an array or object', function () {
+      var userFile = app.readDataFile(userFilePath);
+      assert.isOk(userFile);
+    });
+  });
+
+  describe('# Reading file method For parcelFileData', function () {
+    it('should return an array or object', function () {
+      var parcelFile = app.readDataFile(parcelFilePath);
+      assert.isOk(parcelFile);
+    });
+  });
+
+  describe('# Reading file method For adminFileData', function () {
+    it('should return an array or object', function () {
+      var adminFile = app.readDataFile(adminFilePath);
+      assert.isOk(adminFile);
     });
   });
 });

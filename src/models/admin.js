@@ -63,10 +63,10 @@ export default class Admin {
    * @return boolean
    */
   isTokenValid(authKey) {
-    const userData = this.app.readDataFile(adminFilePath);
-    const user = userData.find(item => item.token === authKey);
+    const adminData = this.app.readDataFile(adminFilePath);
+    const admin = adminData.find(item => item.token === authKey);
 
-    return !!user;
+    return !!admin;
   }
 
   /**
@@ -89,14 +89,14 @@ export default class Admin {
    * @param  object params
    * @return {[type]}
    */
-  editparcel(userId, parcelId, params = {}) {
+  editParcel(parcelId, params = {}) {
     // get presentLocation and status
     const { presentLocation, status } = params;
 
     // read parcel json file
     const parcelData = this.app.readDataFile(parcelFilePath);
 
-    const parcel = parcelData.find(el => el.orderId === parcelId && el.sender.id === userId);
+    const parcel = parcelData.find(el => el.orderId === parcelId);
 
     if (!parcel || parcel.status === 'delivered') {
       return false;
