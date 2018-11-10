@@ -1,3 +1,4 @@
+/* eslint-disable */
 import chai from 'chai';
 import path from 'path';
 

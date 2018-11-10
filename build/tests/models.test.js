@@ -27,6 +27,7 @@ var _app2 = _interopRequireDefault(_app);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // importing models
+/* eslint-disable */
 var expect = _chai2.default.expect,
     assert = _chai2.default.assert;
 
