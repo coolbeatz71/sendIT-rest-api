@@ -50,38 +50,100 @@ var userInfo = {
 
 describe('#### Testing params of each functions in classes without params', function () {
   describe('Admin class', function () {
-    it('should return params length', function () {
+    it('should return undefined', function () {
       expect(admin.getAdmin()).to.be.undefined;
     });
 
-    it('should return params length', function () {
+    it('should return undefined', function () {
       expect(admin.getAdminIdByEmail()).to.be.undefined;
     });
 
-    it('should return params length', function () {
+    it('should return false', function () {
       expect(admin.isTokenValid()).to.be.false;
     });
 
-    it('should return params length', function () {
+    it('should return false', function () {
       expect(admin.getAdminIdByToken()).to.be.false;
     });
 
-    it('should return params length', function () {
+    it('should return false', function () {
       expect(admin.editParcel()).to.be.false;
     });
 
-    it('should return params length', function () {
+    it('should return a number', function () {
       expect(admin.getParcelNumber()).to.be.a('number');
     });
   });
 
-  describe('Admin class', function () {
-    it('should return params length', function () {
+  describe('App class', function () {
+    it('should throw an error or Exception', function () {
       expect(app.readDataFile).to.throw();
     });
 
-    it('should return params length', function () {
+    it('should throw an error or Exception', function () {
       expect(app.writeDataFile).to.throw();
+    });
+  });
+
+  describe('Parcel class', function () {
+    it('should return false', function () {
+      expect(parcel.createParcel()).to.be.false;
+    });
+
+    it('should return an array', function () {
+      expect(parcel.getAllParcel()).to.be.an('array');
+    });
+
+    it('should return NULL', function () {
+      expect(parcel.getAllParcelByUser()).to.be.null;
+    });
+
+    it('should return NaN', function () {
+      expect(parcel.getParcelPrice()).to.be.NaN;
+    });
+
+    it('should return a number', function () {
+      parcel.setOrderId();
+      expect(parcel.getOrderId()).to.be.a('string');
+    });
+  });
+
+  describe('User class', function () {
+    it('should return NULL', function () {
+      expect(user.createUser()).to.be.null;
+    });
+
+    it('should return undefined', function () {
+      expect(user.getUser()).to.be.undefined;
+    });
+
+    it('should return undefined', function () {
+      expect(user.getUserIdByEmail()).to.be.undefined;
+    });
+
+    it('should return a number', function () {
+      user.setUserId();
+      expect(user.getUserId()).to.be.a('string');
+    });
+
+    it('should return false', function () {
+      expect(user.isTokenValid()).to.be.false;
+    });
+
+    it('should return false', function () {
+      expect(user.getUserIdByToken()).to.be.false;
+    });
+
+    it('should return false', function () {
+      expect(user.getEncryptedToken()).to.be.false;
+    });
+
+    it('should return NULL', function () {
+      expect(user.editParcelDestination()).to.be.null;
+    });
+
+    it('should return NULL', function () {
+      expect(user.cancelParcel()).to.be.null;
     });
   });
 });

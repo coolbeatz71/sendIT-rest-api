@@ -42,6 +42,10 @@ export default class User {
 
     const isUserExist = userData.find(item => item.email === email);
 
+    if (!firstName || !lastName || !email || !password) {
+      return null;
+    }
+
     if (isUserExist) {
       response = false;
     } else {
@@ -143,6 +147,9 @@ export default class User {
    * @return string
    */
   getEncryptedToken(email) {
+    if (!email) {
+      return false;
+    }
     const cipher = crypto.createCipher('aes192', email);
 
     this.encrypted = cipher.update('some clear text data', 'utf8', 'hex');
@@ -164,6 +171,10 @@ export default class User {
     const parcelData = this.app.readDataFile(parcelFilePath);
 
     const parcel = parcelData.find(el => el.orderId === parcelId && el.sender.id === userId);
+
+    if (!userId || !parcelId || !destination) {
+      return null;
+    }
 
     if (!parcel || parcel.status === 'delivered') {
       return false;
@@ -188,6 +199,10 @@ export default class User {
     const parcelData = this.app.readDataFile(parcelFilePath);
 
     const parcel = parcelData.find(el => el.orderId === parcelId && el.sender.id === userId);
+
+    if (!userId || !parcelId) {
+      return null;
+    }
 
     if (!parcel || parcel.status === 'delivered') {
       return false;

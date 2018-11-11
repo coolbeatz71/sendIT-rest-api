@@ -70,6 +70,10 @@ var User = function () {
         return item.email === email;
       });
 
+      if (!firstName || !lastName || !email || !password) {
+        return null;
+      }
+
       if (isUserExist) {
         response = false;
       } else {
@@ -200,6 +204,9 @@ var User = function () {
   }, {
     key: 'getEncryptedToken',
     value: function getEncryptedToken(email) {
+      if (!email) {
+        return false;
+      }
       var cipher = _crypto2.default.createCipher('aes192', email);
 
       this.encrypted = cipher.update('some clear text data', 'utf8', 'hex');
@@ -226,6 +233,10 @@ var User = function () {
       var parcel = parcelData.find(function (el) {
         return el.orderId === parcelId && el.sender.id === userId;
       });
+
+      if (!userId || !parcelId || !destination) {
+        return null;
+      }
 
       if (!parcel || parcel.status === 'delivered') {
         return false;
@@ -255,6 +266,10 @@ var User = function () {
       var parcel = parcelData.find(function (el) {
         return el.orderId === parcelId && el.sender.id === userId;
       });
+
+      if (!userId || !parcelId) {
+        return null;
+      }
 
       if (!parcel || parcel.status === 'delivered') {
         return false;
