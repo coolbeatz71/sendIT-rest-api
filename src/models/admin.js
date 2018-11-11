@@ -109,4 +109,20 @@ export default class Admin {
     this.app.writeDataFile(parcelFilePath, parcelData);
     return parcel;
   }
+
+  /**
+   * get Number of parcel delivery order by categories for all users
+   * @param  string status
+   * @return Number
+   */
+  getParcelNumber(status) {
+    const parcelData = this.app.readDataFile(parcelFilePath);
+
+    // if status is undefined, we should getAllParcel
+    if (status) {
+      const parcel = parcelData.filter(el => el.status === status);
+      return parcel.length;
+    }
+    return parcelData.length;
+  }
 }

@@ -161,6 +161,27 @@ var Admin = function () {
       this.app.writeDataFile(parcelFilePath, parcelData);
       return parcel;
     }
+
+    /**
+     * get Number of parcel delivery order by categories for all users
+     * @param  string status
+     * @return Number
+     */
+
+  }, {
+    key: 'getParcelNumber',
+    value: function getParcelNumber(status) {
+      var parcelData = this.app.readDataFile(parcelFilePath);
+
+      // if status is undefined, we should getAllParcel
+      if (status) {
+        var parcel = parcelData.filter(function (el) {
+          return el.status === status;
+        });
+        return parcel.length;
+      }
+      return parcelData.length;
+    }
   }]);
 
   return Admin;

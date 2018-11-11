@@ -21,6 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var router = _express2.default.Router();
 
 /**
+ * TESTED
  * route to sign-in the user to its account
  * @method POST
  */
@@ -58,6 +59,7 @@ router.post('/signIn', function (request, response) {
 });
 
 /**
+ * TESTED
  * route to sign-up the user to its account
  * @method POST
  */
@@ -93,6 +95,7 @@ router.post('/signUp', function (request, response) {
 });
 
 /**
+ * TESTED
  * route to fetch all parcels delivery orders by a specific user
  * @method GET
  */
@@ -110,10 +113,11 @@ router.get('/:userId/parcels', _user4.default, function (request, response) {
 });
 
 /**
+ * TESTED
  * route to get the number of parcels delivery orders by a specific user
  * @method GET
  */
-router.get('/parcels/number', _user4.default, function (request, response) {
+router.get('/parcels/count', _user4.default, function (request, response) {
   // split the header value to get only teh authKey (Bearer wuyhdu3Y488478Eehjh...)
   var authKey = request.headers.authorization.split(' ')[1];
 

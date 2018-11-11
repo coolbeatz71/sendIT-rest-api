@@ -74,6 +74,18 @@ describe('#### Testing methods[function] for Admin class', () => {
   });
 });
 
+describe('#### Testing methods[function] for Admin class', () => {
+  it('should be a function', () => {
+    admin.getParcelNumber.should.be.a('function');
+  });
+});
+
+describe('#### Testing methods[function] for User class', () => {
+  it('should be a function', () => {
+    user.getParcelNumber.should.be.a('function');
+  });
+});
+
 describe('#### Testing methods[function] for App class', () => {
   it('should be a function', () => {
     app.readDataFile.should.be.a('function');
