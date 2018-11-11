@@ -38,5 +38,13 @@
         "email": "umutesi@gmail.",
         "password": "12345678",
         "token": "a9483c6822b8264919f8a268803f9f389bdb5986ecf8eaf61b3004e18644c9ca"
+    },
+    {
+        "id": "716",
+        "firstName": "Landry",
+        "lastName": "Miromi",
+        "email": "sigmacool@gmail",
+        "password": "12345678",
+        "token": "383011e7de05290f80107a53b193711a298f76df2aea18548907ea0fc24123b3"
     }
 ]

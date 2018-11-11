@@ -96,6 +96,18 @@ describe('#### Testing methods[function] for Admin class', function () {
   });
 });
 
+describe('#### Testing methods[function] for Admin class', function () {
+  it('should be a function', function () {
+    admin.getParcelNumber.should.be.a('function');
+  });
+});
+
+describe('#### Testing methods[function] for User class', function () {
+  it('should be a function', function () {
+    user.getParcelNumber.should.be.a('function');
+  });
+});
+
 describe('#### Testing methods[function] for App class', function () {
   it('should be a function', function () {
     app.readDataFile.should.be.a('function');

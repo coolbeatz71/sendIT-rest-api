@@ -81,4 +81,32 @@ router.put('/parcels/:parcelId/edit', _admin4.default, function (request, respon
   }
 });
 
+/**
+ * TESTED
+ * route to get the number of parcels delivery orders for all users
+ * @method GET
+ */
+router.get('/parcels/count', _admin4.default, function (request, response) {
+  var delivered = 'delivered';
+  var inTransit = 'in transit';
+  var cancelled = 'cancelled';
+
+  var admin = new _admin2.default();
+
+  var all = admin.getParcelNumber();
+  var parcelDelivered = admin.getParcelNumber(delivered);
+  var parcelInTransit = admin.getParcelNumber(inTransit);
+  var parcelCancelled = admin.getParcelNumber(cancelled);
+
+  response.status(200).json({
+    error: false,
+    data: {
+      all: all,
+      delivered: parcelDelivered,
+      inTransit: parcelInTransit,
+      cancelled: parcelCancelled
+    }
+  });
+});
+
 module.exports = router;

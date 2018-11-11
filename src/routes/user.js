@@ -8,6 +8,7 @@ import checkAuth from '../middleware/user';
 const router = express.Router();
 
 /**
+ * TESTED
  * route to sign-in the user to its account
  * @method POST
  */
@@ -39,6 +40,7 @@ router.post('/signIn', (request, response) => {
 });
 
 /**
+ * TESTED
  * route to sign-up the user to its account
  * @method POST
  */
@@ -74,6 +76,7 @@ router.post('/signUp', (request, response) => {
 });
 
 /**
+ * TESTED
  * route to fetch all parcels delivery orders by a specific user
  * @method GET
  */
@@ -90,10 +93,11 @@ router.get('/:userId/parcels', checkAuth, (request, response) => {
 });
 
 /**
+ * TESTED
  * route to get the number of parcels delivery orders by a specific user
  * @method GET
  */
-router.get('/parcels/number', checkAuth, (request, response) => {
+router.get('/parcels/count', checkAuth, (request, response) => {
   // split the header value to get only teh authKey (Bearer wuyhdu3Y488478Eehjh...)
   const authKey = request.headers.authorization.split(' ')[1];
 

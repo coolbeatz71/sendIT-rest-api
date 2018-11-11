@@ -163,9 +163,9 @@ describe('/GET /:userId/parcels', function () {
 });
 
 // get the number for parcel delivery order per category
-describe('/GET /parcels/number with Authorization header', function () {
+describe('/GET /parcels/count with Authorization header', function () {
   it('should get the number for parcel delivery order per category', function (done) {
-    _chai2.default.request(_app2.default).get(apiVersion + '/user/parcels/number').set('Authorization', 'Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe').end(function (err, res) {
+    _chai2.default.request(_app2.default).get(apiVersion + '/user/parcels/count').set('Authorization', 'Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe').end(function (err, res) {
       res.should.have.status(200);
       done();
     });
@@ -203,6 +203,16 @@ describe('/PUT admin/parcels/:parcelId/edit without body request and no Auth hea
   it('should edit presentLocation and status of a parcel delivery order: return 401', function (done) {
     var parcelId = '001';
     _chai2.default.request(_app2.default).put(apiVersion + '/admin/parcels/' + parcelId + '/edit').end(function (err, res) {
+      res.should.have.status(401);
+      done();
+    });
+  });
+});
+
+// get the number for parcel delivery order per category
+describe('/GET /parcels/count without Authorization header', function () {
+  it('should get the number for parcel delivery order per category for All user', function (done) {
+    _chai2.default.request(_app2.default).get(apiVersion + '/admin/parcels/count').end(function (err, res) {
       res.should.have.status(401);
       done();
     });

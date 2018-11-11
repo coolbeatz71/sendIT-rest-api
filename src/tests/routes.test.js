@@ -179,10 +179,10 @@ describe('/GET /:userId/parcels', () => {
 });
 
 // get the number for parcel delivery order per category
-describe('/GET /parcels/number with Authorization header', () => {
+describe('/GET /parcels/count with Authorization header', () => {
   it('should get the number for parcel delivery order per category', (done) => {
     chai.request(app)
-      .get(`${apiVersion}/user/parcels/number`)
+      .get(`${apiVersion}/user/parcels/count`)
       .set('Authorization', 'Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe')
       .end((err, res) => {
         res.should.have.status(200);
@@ -229,6 +229,18 @@ describe('/PUT admin/parcels/:parcelId/edit without body request and no Auth hea
     const parcelId = '001';
     chai.request(app)
       .put(`${apiVersion}/admin/parcels/${parcelId}/edit`)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+});
+
+// get the number for parcel delivery order per category
+describe('/GET /parcels/count without Authorization header', () => {
+  it('should get the number for parcel delivery order per category for All user', (done) => {
+    chai.request(app)
+      .get(`${apiVersion}/admin/parcels/count`)
       .end((err, res) => {
         res.should.have.status(401);
         done();
