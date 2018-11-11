@@ -268,7 +268,7 @@ var User = function () {
     }
 
     /**
-     * get Number of parcel delivery order by categories
+     * get Number of parcel delivery order by categories for one users
      * @param  string userId
      * @param  string status
      * @return Number
