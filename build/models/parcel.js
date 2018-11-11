@@ -71,6 +71,9 @@ var Parcel = function () {
         destination: destination
       };
 
+      if (!senderId || !parcelName || !description || !pickupLocation || !destination || !weight) {
+        return false;
+      }
       var parcelData = this.app.readDataFile(parcelFilePath);
 
       // push new order

@@ -188,6 +188,3 @@ var Admin = function () {
 }();
 
 exports.default = Admin;
-
-var user = new Admin();
-console.log(user.getParcelNumber());

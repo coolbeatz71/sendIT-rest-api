@@ -48,6 +48,9 @@ export default class Parcel {
       destination,
     };
 
+    if (!senderId || !parcelName || !description || !pickupLocation || !destination || !weight) {
+      return false;
+    }
     const parcelData = this.app.readDataFile(parcelFilePath);
 
     // push new order
