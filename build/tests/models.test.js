@@ -74,6 +74,16 @@ describe('#### Testing params of each functions in classes without params', func
       expect(admin.getParcelNumber()).to.be.a('number');
     });
   });
+
+  describe('Admin class', function () {
+    it('should return params length', function () {
+      expect(app.readDataFile).to.throw();
+    });
+
+    it('should return params length', function () {
+      expect(app.writeDataFile).to.throw();
+    });
+  });
 });
 
 // //////////////////////////////////

@@ -52,7 +52,19 @@ describe('#### Testing params of each functions in classes without params', () =
       expect(admin.getParcelNumber()).to.be.a('number');
     });
   });
+
+  describe('Admin class', () => {
+    it('should return params length', () => {
+      expect(app.readDataFile).to.throw();
+    });
+
+    it('should return params length', () => {
+      expect(app.writeDataFile).to.throw();
+    });
+  });
 });
+
+
 
 // //////////////////////////////////
 // Testing instance of classes     //
