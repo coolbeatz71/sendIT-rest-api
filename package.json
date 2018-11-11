@@ -25,6 +25,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-watch": "^2.0.7",
     "chai-http": "^4.2.0",
+    "codeclimate-test-reporter": "^0.5.1",
     "coveralls": "^3.0.2",
     "eslint": "^5.8.0",
     "eslint-config-airbnb-base": "^13.1.0",
