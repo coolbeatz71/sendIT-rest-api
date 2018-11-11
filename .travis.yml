@@ -6,3 +6,9 @@ cache:
     - "node_modules"
 after_success:
   - npm run coveralls
+addons:
+  code_climate:
+    repo_token:
+      secure: "913a68445cb525f0d47285e0b826c425290acd92d14fdca689733374ae9d1b82"
+after_script:
+  - codeclimate-test-reporter < ./coverage/lcov.info

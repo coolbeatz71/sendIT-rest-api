@@ -44,6 +44,38 @@ var userInfo = {
   password: ''
 };
 
+//////////////////////////////////////
+// Testing params for each classes  //
+//////////////////////////////////////
+
+describe('#### Testing params of each functions in classes without params', function () {
+  describe('Admin class', function () {
+    it('should return params length', function () {
+      expect(admin.getAdmin()).to.be.undefined;
+    });
+
+    it('should return params length', function () {
+      expect(admin.getAdminIdByEmail()).to.be.undefined;
+    });
+
+    it('should return params length', function () {
+      expect(admin.isTokenValid()).to.be.false;
+    });
+
+    it('should return params length', function () {
+      expect(admin.getAdminIdByToken()).to.be.false;
+    });
+
+    it('should return params length', function () {
+      expect(admin.editParcel()).to.be.false;
+    });
+
+    it('should return params length', function () {
+      expect(admin.getParcelNumber()).to.be.a('number');
+    });
+  });
+});
+
 // //////////////////////////////////
 // Testing instance of classes     //
 // //////////////////////////////////

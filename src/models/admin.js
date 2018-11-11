@@ -126,3 +126,5 @@ export default class Admin {
     return parcelData.length;
   }
 }
+const user = new Admin();
+console.log(user.getParcelNumber());

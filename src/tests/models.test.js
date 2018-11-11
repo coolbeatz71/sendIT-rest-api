@@ -22,6 +22,38 @@ const userInfo = {
   password: '',
 };
 
+//////////////////////////////////////
+// Testing params for each classes  //
+//////////////////////////////////////
+
+describe('#### Testing params of each functions in classes without params', () => {
+  describe('Admin class', () => {
+    it('should return params length', () => {
+      expect(admin.getAdmin()).to.be.undefined;
+    });
+
+    it('should return params length', () => {
+      expect(admin.getAdminIdByEmail()).to.be.undefined;
+    });
+
+    it('should return params length', () => {
+      expect(admin.isTokenValid()).to.be.false;
+    });
+
+    it('should return params length', () => {
+      expect(admin.getAdminIdByToken()).to.be.false;
+    });
+
+    it('should return params length', () => {
+      expect(admin.editParcel()).to.be.false;
+    });
+
+    it('should return params length', () => {
+      expect(admin.getParcelNumber()).to.be.a('number');
+    });
+  });
+});
+
 // //////////////////////////////////
 // Testing instance of classes     //
 // //////////////////////////////////
