@@ -45,7 +45,7 @@ router.post('/signIn', function (request, response) {
     } else {
       response.status(401).json({
         error: true,
-        errorWrongParams: true
+        wrongParams: true
       });
     }
   }
@@ -92,7 +92,6 @@ router.get('/parcels/count', _admin4.default, function (request, response) {
   var cancelled = 'cancelled';
 
   var admin = new _admin2.default();
-
   var all = admin.getParcelNumber();
   var parcelDelivered = admin.getParcelNumber(delivered);
   var parcelInTransit = admin.getParcelNumber(inTransit);
