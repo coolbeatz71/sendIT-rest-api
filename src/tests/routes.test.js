@@ -50,6 +50,21 @@ describe('## /POST create new parcel delivery order without Authorization header
   });
 });
 
+describe('## /POST create new parcel delivery order with Authorization header but no Body', () => {
+  it('should POST a new parcel', (done) => {
+    chai.request(app)
+      .post(`${apiVersion}/parcels`)
+      .send({})
+      .set('Authorization', 'Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe')
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.error.should.be.true;
+        res.body.paramsMissed.should.be.true;
+        done();
+      });
+  });
+});
+
 // to fetch a specific delivery order by its ID
 describe('## /GET parcels/:orderId', () => {
   const orderId = '001';
@@ -64,14 +79,59 @@ describe('## /GET parcels/:orderId', () => {
   });
 });
 
+describe('## /GET parcels/:orderId without Authorization Header', () => {
+  const orderId = '001';
+  it('should GET a specific delivery order by its ID', (done) => {
+    chai.request(app)
+      .get(`${apiVersion}/parcels/${orderId}`)
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.error.should.be.true;
+        done();
+      });
+  });
+});
+
+// to fetch a specific delivery order by its ID
+describe('## /GET parcels/:orderId with a wrong orderId', () => {
+  const orderId = '001wrong';
+  it('should GET a specific delivery order by its ID', (done) => {
+    chai.request(app)
+      .get(`${apiVersion}/parcels/${orderId}`)
+      .set('Authorization', 'Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.wrongId.should.be.true;
+        done();
+      });
+  });
+});
+
 // for editing the destination of a parcel
-describe('## /PUT parcels/:parcelId/destination without Authorization header', () => {
+describe('## /PUT parcels/:parcelId/destination without Authorization header but wrong parcelId', () => {
+  const parcelId = '001wrong'; 
+  it('should edit the destination of a parcel', (done) => {
+    chai.request(app)
+      .put(`${apiVersion}/parcels/${parcelId}/destination`)
+      .set('Authorization', 'Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe')
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.errorEdit.should.be.true;
+        done();
+      });
+  });
+});
+
+// for editing the destination of a parcel
+describe('## /PUT parcels/:parcelId/destination without Authorization header but wrong parcelId and nobody', () => {
   const parcelId = '001'; 
   it('should edit the destination of a parcel', (done) => {
     chai.request(app)
       .put(`${apiVersion}/parcels/${parcelId}/destination`)
+      .set('Authorization', 'Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe')
       .end((err, res) => {
         res.should.have.status(401);
+        res.body.error.should.be.true;
         done();
       });
   });
@@ -89,6 +149,20 @@ describe('## /PUT parcels/:parcelId/cancel without Authorization header', () => 
   });
 });
 
+describe('## /PUT parcels/:parcelId/cancel with Authorization header, with wrong parcelId', () => {
+  it('should cancel a parcel delivery order', (done) => {
+    const parcelId = '001wrong';
+    chai.request(app)
+      .put(`${apiVersion}/parcels/:parcelId/cancel`)
+      .set('Authorization', 'Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe')
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.errorCancel.should.be.true;
+        done();
+      });
+  });
+});
+
 // ///////////////////////////
 // Test for users routes    //
 // ///////////////////////////
@@ -99,7 +173,7 @@ describe('/POST signUp user with empty argument', () => {
     firstName: '',
     lastName: '',
     email: '',
-    passwrord: '',
+    password: '',
   };
   it('should POST user data (signUp)', (done) => {
     chai.request(app)
@@ -117,7 +191,7 @@ describe('/POST signUp user, Email already exist', () => {
     firstName: 'whatever',
     lastName: 'whatever',
     email: 'sigmacool@gmail.com',
-    passwrord: '12345678',
+    password: '12345678',
   };
   it('should POST user data (signUp)', (done) => {
     chai.request(app)
@@ -131,11 +205,31 @@ describe('/POST signUp user, Email already exist', () => {
   });
 });
 
+describe('/POST signUp user, with good params', () => {
+  it('should POST user data (signUp)', (done) => {
+    const signUpData = {
+      firstName: 'tdd user',
+      lastName: 'tdd user',
+      email: 'tdduser@gmail.com',
+      password: '12345678',
+    };
+    chai.request(app)
+      .post(`${apiVersion}/user/signUp`)
+      .send(signUpData)
+      .end((err, res) => {
+        res.should.have.status(201);
+        expect(res).to.be.json;
+        res.body.error.should.be.false;
+        done();
+      });
+  });
+});
+
 // signIn the user when no data are sent
 describe('/POST signIn user with empty params', () => {
   const signInData = {
     email: '',
-    passwrord: '',
+    password: '',
   };
   it('should POST user data (signIn)', (done) => {
     chai.request(app)
@@ -164,6 +258,23 @@ describe('/POST signIn user with good params', () => {
   });
 });
 
+describe('/POST signIn user with wrong email params', () => {
+  it('should POST user data (signIn)', (done) => {
+    chai.request(app)
+      .post(`${apiVersion}/user/signIn`)
+      .send({
+        email: 'sigmacoolwrong',
+        password: '12345678'
+      })
+      .end((err, res) => {
+        res.should.have.status(401);
+        expect(res).to.be.json;
+        res.body.wrongParams.should.be.true;
+        done();
+      });
+  });
+});
+
 // fetch all parcel delivery order by an user
 describe('/GET /:userId/parcels', () => {
   const userId = '001';
@@ -178,6 +289,19 @@ describe('/GET /:userId/parcels', () => {
   });
 });
 
+// fetch all parcel delivery order by an user
+describe('/GET /:userId/parcels without Authorization Header', () => {
+  const userId = '001';
+  it('should fetch all parcel delivery order by an user', (done) => {
+    chai.request(app)
+      .get(`${apiVersion}/user/${userId}/parcels`)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+});
+
 // get the number for parcel delivery order per category
 describe('/GET /parcels/count with Authorization header', () => {
   it('should get the number for parcel delivery order per category', (done) => {
@@ -186,6 +310,18 @@ describe('/GET /parcels/count with Authorization header', () => {
       .set('Authorization', 'Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe')
       .end((err, res) => {
         res.should.have.status(200);
+        done();
+      });
+  });
+});
+
+// get the number for parcel delivery order per category
+describe('/GET /parcels/count without Authorization header', () => {
+  it('should get the number for parcel delivery order per category', (done) => {
+    chai.request(app)
+      .get(`${apiVersion}/user/parcels/count`)
+      .end((err, res) => {
+        res.should.have.status(401);
         done();
       });
   });
@@ -223,12 +359,42 @@ describe('/POST signIn admin with Good params', () => {
   });
 });
 
+describe('/POST signIn admin with wrong params', () => {
+  it('should POST admin data (signIn)', (done) => {
+    chai.request(app)
+      .post(`${apiVersion}/admin/signIn`)
+      .send({
+        email: 'adminwrong@gmail.com',
+        password: '1234567'
+      })
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.wrongParams
+        done();
+      });
+  });
+});
+
 // admin edit parcel presentlocation and status
 describe('/PUT admin/parcels/:parcelId/edit without body request and no Auth header', () => {
   it('should edit presentLocation and status of a parcel delivery order: return 401', (done) => {
     const parcelId = '001';
     chai.request(app)
       .put(`${apiVersion}/admin/parcels/${parcelId}/edit`)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+});
+
+// admin edit parcel presentlocation and status
+describe('/PUT admin/parcels/:parcelId/edit without body request but with Auth header', () => {
+  it('should edit presentLocation and status of a parcel delivery order: return 401', (done) => {
+    const parcelId = '001';
+    chai.request(app)
+      .put(`${apiVersion}/admin/parcels/${parcelId}/edit`)
+      .set('Authorization', 'Bearer a47aa345465ef64919f8a268803f9f389bdb5986ecf8eaf61b3004e18644c9ca')
       .end((err, res) => {
         res.should.have.status(401);
         done();
@@ -243,6 +409,20 @@ describe('/GET /parcels/count without Authorization header', () => {
       .get(`${apiVersion}/admin/parcels/count`)
       .end((err, res) => {
         res.should.have.status(401);
+        done();
+      });
+  });
+});
+
+// get the number for parcel delivery order per category
+describe('/GET /parcels/count with Authorization header', () => {
+  it('should get the number for parcel delivery order per category for All user', (done) => {
+    chai.request(app)
+      .get(`${apiVersion}/admin/parcels/count`)
+      .set('Authorization', 'Bearer a47aa345465ef64919f8a268803f9f389bdb5986ecf8eaf61b3004e18644c9ca')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.error.should.be.false;
         done();
       });
   });

@@ -33,7 +33,7 @@ router.post('/signIn', (request, response) => {
     } else {
       response.status(401).json({
         error: true,
-        errorWrongParams: true,
+        wrongParams: true,
       });
     }
   }

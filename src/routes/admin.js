@@ -31,7 +31,7 @@ router.post('/signIn', (request, response) => {
     } else {
       response.status(401).json({
         error: true,
-        errorWrongParams: true,
+        wrongParams: true,
       });
     }
   }
@@ -74,7 +74,6 @@ router.get('/parcels/count', checkAuthAdmin, (request, response) => {
   const cancelled = 'cancelled';
 
   const admin = new Admin();
-
   const all = admin.getParcelNumber();
   const parcelDelivered = admin.getParcelNumber(delivered);
   const parcelInTransit = admin.getParcelNumber(inTransit);
