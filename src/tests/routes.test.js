@@ -402,6 +402,24 @@ describe('/PUT admin/parcels/:parcelId/edit without body request but with Auth h
   });
 });
 
+// admin edit parcel presentlocation and status
+describe('/PUT admin/parcels/:parcelId/edit with body request and Auth header', () => {
+  it('should edit presentLocation and status of a parcel delivery order: return 401', (done) => {
+    const parcelId = '001';
+    const editInfo = {
+      presentlocation: 'Rwanda',
+      status: 'cancelled'
+    };
+    chai.request(app)
+      .put(`${apiVersion}/admin/parcels/${parcelId}/edit`)
+      .set('Authorization', 'Bearer a47aa345465ef64919f8a268803f9f389bdb5986ecf8eaf61b3004e18644c9ca')
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+});
+
 // get the number for parcel delivery order per category
 describe('/GET /parcels/count without Authorization header', () => {
   it('should get the number for parcel delivery order per category for All user', (done) => {
