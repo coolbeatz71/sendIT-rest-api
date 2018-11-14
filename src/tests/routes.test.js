@@ -205,26 +205,6 @@ describe('/POST signUp user, Email already exist', () => {
   });
 });
 
-describe('/POST signUp user, with good params', () => {
-  it('should POST user data (signUp)', (done) => {
-    const signUpData = {
-      firstName: 'tdd user',
-      lastName: 'tdd user',
-      email: 'tdduser@gmail.com',
-      password: '12345678',
-    };
-    chai.request(app)
-      .post(`${apiVersion}/user/signUp`)
-      .send(signUpData)
-      .end((err, res) => {
-        res.should.have.status(201);
-        expect(res).to.be.json;
-        res.body.error.should.be.false;
-        done();
-      });
-  });
-});
-
 // signIn the user when no data are sent
 describe('/POST signIn user with empty params', () => {
   const signInData = {

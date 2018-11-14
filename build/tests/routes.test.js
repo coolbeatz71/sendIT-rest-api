@@ -182,23 +182,6 @@ describe('/POST signUp user, Email already exist', function () {
   });
 });
 
-describe('/POST signUp user, with good params', function () {
-  it('should POST user data (signUp)', function (done) {
-    var signUpData = {
-      firstName: 'tdd user',
-      lastName: 'tdd user',
-      email: 'tdduser@gmail.com',
-      password: '12345678'
-    };
-    _chai2.default.request(_app2.default).post(apiVersion + '/user/signUp').send(signUpData).end(function (err, res) {
-      res.should.have.status(201);
-      expect(res).to.be.json;
-      res.body.error.should.be.false;
-      done();
-    });
-  });
-});
-
 // signIn the user when no data are sent
 describe('/POST signIn user with empty params', function () {
   var signInData = {
