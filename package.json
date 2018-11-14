@@ -2,8 +2,9 @@
   "name": "sendit-api",
   "version": "1.0.0",
   "description": "Simple NodeJS rest-api to serve the sendIT application for andela challenge number 2",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
+    "start": "node build/index.js",
     "test": "mocha ./build/tests --recursive",
     "build": "babel src --watch -d build",
     "serve": "nodemon build/server.js",
