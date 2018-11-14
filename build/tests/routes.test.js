@@ -182,23 +182,6 @@ describe('/POST signUp user, Email already exist', function () {
   });
 });
 
-describe('/POST signUp user, with good params', function () {
-  it('should POST user data (signUp)', function (done) {
-    var signUpData = {
-      firstName: 'tdd user',
-      lastName: 'tdd user',
-      email: 'tdduser@gmail.com',
-      password: '12345678'
-    };
-    _chai2.default.request(_app2.default).post(apiVersion + '/user/signUp').send(signUpData).end(function (err, res) {
-      res.should.have.status(201);
-      expect(res).to.be.json;
-      res.body.error.should.be.false;
-      done();
-    });
-  });
-});
-
 // signIn the user when no data are sent
 describe('/POST signIn user with empty params', function () {
   var signInData = {
@@ -374,6 +357,17 @@ describe('/GET /parcels/count with Authorization header', function () {
     _chai2.default.request(_app2.default).get(apiVersion + '/admin/parcels/count').set('Authorization', 'Bearer a47aa345465ef64919f8a268803f9f389bdb5986ecf8eaf61b3004e18644c9ca').end(function (err, res) {
       res.should.have.status(200);
       res.body.error.should.be.false;
+      done();
+    });
+  });
+});
+
+// when the user type an incorrect url or routes
+describe('Handle error for invalid routes', function () {
+  it('should display a custom error', function (done) {
+    _chai2.default.request(_app2.default).get(apiVersion + '/invalidRoute/parcels/count/').end(function (err, res) {
+      res.should.have.status(404);
+      res.body.error.should.not.be.undefined;
       done();
     });
   });

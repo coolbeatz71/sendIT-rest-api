@@ -7,8 +7,8 @@
         "parcelName": "Lg TV Screen",
         "Description": "Lg TV Screen 1024x720, HD bought from Dubai",
         "weight": "5Kg",
-        "price": "Rwf 2500",
         "status": "delivered",
+        "price": "Rwf 2500",
         "pickupLocation": "Rwanda",
         "destination": "Kilimanjaro"
     },
@@ -66,6 +66,20 @@
         "status": "cancelled",
         "pickupLocation": "Rwanda",
         "presentLocation": "Malawi",
+        "destination": "Kenya"
+    },
+    {
+        "orderId": "720",
+        "sender": {
+            "id": "001"
+        },
+        "parcelName": "Home-theater Sony",
+        "description": "A home-theater with 8 speakers cming from China",
+        "weight": 230,
+        "price": 115000,
+        "status": "cancelled",
+        "pickupLocation": "Nigeria",
+        "presentLocation": "",
         "destination": "Kenya"
     }
 ]

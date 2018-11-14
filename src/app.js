@@ -41,19 +41,20 @@ app.use(`${apiVersion}/admin`, adminRoutes);
 
 // handling request error
 app.use((request, response, next) => {
-  const error = new Error('Resource not found');
+  const error = new Error('Resource not found, invalid route');
   error.status = 404;
   next(error);
 });
 
 // customize error display
-app.use((error, request, response) => {
+app.use((error, request, response, next) => {
   response.status(error.status || 500);
   response.json({
     error: {
       message: error.message,
     },
   });
+  next();
 });
 
 module.exports = app;

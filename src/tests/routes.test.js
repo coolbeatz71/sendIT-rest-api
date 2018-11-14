@@ -205,26 +205,6 @@ describe('/POST signUp user, Email already exist', () => {
   });
 });
 
-describe('/POST signUp user, with good params', () => {
-  it('should POST user data (signUp)', (done) => {
-    const signUpData = {
-      firstName: 'tdd user',
-      lastName: 'tdd user',
-      email: 'tdduser@gmail.com',
-      password: '12345678',
-    };
-    chai.request(app)
-      .post(`${apiVersion}/user/signUp`)
-      .send(signUpData)
-      .end((err, res) => {
-        res.should.have.status(201);
-        expect(res).to.be.json;
-        res.body.error.should.be.false;
-        done();
-      });
-  });
-});
-
 // signIn the user when no data are sent
 describe('/POST signIn user with empty params', () => {
   const signInData = {
@@ -441,6 +421,19 @@ describe('/GET /parcels/count with Authorization header', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.error.should.be.false;
+        done();
+      });
+  });
+});
+
+// when the user type an incorrect url or routes
+describe('Handle error for invalid routes', () => {
+  it('should display a custom error', (done) => {
+    chai.request(app)
+      .get(`${apiVersion}/invalidRoute/parcels/count/`)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.error.should.not.be.undefined;
         done();
       });
   });

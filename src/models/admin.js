@@ -98,7 +98,7 @@ export default class Admin {
 
     const parcel = parcelData.find(el => el.orderId === parcelId);
 
-    if (!parcel || parcel.status === 'delivered') {
+    if (!parcel || !presentLocation || !status || parcel.status === 'delivered') {
       return false;
     }
 

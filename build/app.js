@@ -61,19 +61,20 @@ app.use(apiVersion + '/admin', _admin2.default);
 
 // handling request error
 app.use(function (request, response, next) {
-  var error = new Error('Resource not found');
+  var error = new Error('Resource not found, invalid route');
   error.status = 404;
   next(error);
 });
 
 // customize error display
-app.use(function (error, request, response) {
+app.use(function (error, request, response, next) {
   response.status(error.status || 500);
   response.json({
     error: {
       message: error.message
     }
   });
+  next();
 });
 
 module.exports = app;
