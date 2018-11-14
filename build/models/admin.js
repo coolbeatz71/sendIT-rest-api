@@ -150,7 +150,7 @@ var Admin = function () {
         return el.orderId === parcelId;
       });
 
-      if (!parcel || parcel.status === 'delivered') {
+      if (!parcel || !presentLocation || !status || parcel.status === 'delivered') {
         return false;
       }
 

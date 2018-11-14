@@ -445,3 +445,16 @@ describe('/GET /parcels/count with Authorization header', () => {
       });
   });
 });
+
+// when the user type an incorrect url or routes
+describe('Handle error for invalid routes', () => {
+  it('should display a custom error', (done) => {
+    chai.request(app)
+      .get(`${apiVersion}/invalidRoute/parcels/count/`)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.error.should.not.be.undefined;
+        done();
+      });
+  });
+});
