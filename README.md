@@ -1,12 +1,22 @@
 [![Build Status](https://travis-ci.org/coolbeatz71/sendIT-rest-api.svg?branch=master)](https://travis-ci.org/coolbeatz71/sendIT-rest-api)         [![Coverage Status](https://coveralls.io/repos/github/coolbeatz71/sendIT-rest-api/badge.svg?branch=master)](https://coveralls.io/github/coolbeatz71/sendIT-rest-api?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/00cb45ccabfd125bbb79/maintainability)](https://codeclimate.com/github/coolbeatz71/sendIT-rest-api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/00cb45ccabfd125bbb79/test_coverage)](https://codeclimate.com/github/coolbeatz71/sendIT-rest-api/test_coverage)
 
 # sendIT-rest-api
+
 **Simple NodeJS REST-API**: SendIT is a courier service that helps users deliver parcels to different destinations. SendIT provides courier quotes based on weight categories.
+
+### Protected route
+
+Some routes for both the user and admin are protected and require respective **Authorization** Header to be set in the request.
+The Authorization is of type `Bearer ${ token }`. And the token can be found in the folder named `files` that save user and admin information: the folder is in the root of the project repo.
+
+#### Examples
+ - admin: `Bearer a47aa345465ef64919f8a268803f9f389bdb5986ecf8eaf61b3004e18644c9ca`
+ - user: `Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe`
 
 ### How to Use?
 
 The app can be accessed on heroku via this [http://sendit-rest-api.herokuapp.com/api/v1/](http://sendit-rest-api.herokuapp.com/api/v1/)
----
+
 #### Routes about the user
 | Routes                       | Functionality                                          | Authorization header  | 
 | -----------------------------|:------------------------------------------------------ |:--------------------- |
@@ -41,12 +51,3 @@ The app can be accessed on heroku via this [http://sendit-rest-api.herokuapp.com
 5. **POST** /parcels   `parcelName, description, pickupLocation, destination, weight`
 6. **PUT** /parcels/:parcelId/destination   `destination`
 7. **PUT** /parcels/:parcelId/cancel    : `doesnt have body params`
-
-### Protected route
-
-Some routes for both the user and admin are protected and require respective **Authorization** Header to be set in the request.
-The Authorization is of type `Bearer ${ token }`. And the token can be found in the folder named `files` that save user and admin informations.
-
-#### Examples
- - admin: `Bearer a47aa345465ef64919f8a268803f9f389bdb5986ecf8eaf61b3004e18644c9ca`
- - user: `Bearer a41f8a8dbb67735da4d0f1ac100975ea3dc1409b022d4043d8584f0a18c3efbe`
